@@ -14,20 +14,20 @@ constexpr int num_elements = 4;
 int my_sequence[num_elements]; // Fix change this type to the appropriate STL container
 
 void test_containers1() {
-  for (size_t i = 0; i < num_elements; i++) {
-    my_sequence[i] = 42;
-  }
+    for (size_t i = 0; i < num_elements; i++) {
+        my_sequence[i] = 42;
+    }
 }
 
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("test_containers1") {
-  test_containers1();
-  std::cout << "Size of container : " << my_sequence.size() << "\n";
-  REQUIRE(my_sequence.size() == num_elements);
+    test_containers1();
+    std::cout << "Size of container : " << my_sequence.size() << "\n";
+    REQUIRE(my_sequence.size() == num_elements);
 
-  for (const auto &e : my_sequence) {
-    std::cout << "Value :" << e << "\n";
-    REQUIRE(e == 42);
-  }
+    for (const auto &e : my_sequence) {
+        std::cout << "Value :" << e << "\n";
+        REQUIRE(e == 42);
+    }
 }

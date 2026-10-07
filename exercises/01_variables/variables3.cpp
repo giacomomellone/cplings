@@ -8,14 +8,14 @@
 // even after you already figured it out.
 
 int double_value_function(const int input) {
-  // Solution fix the next line variable : note input cannot be modified
-  return input;
+    // Solution fix the next line variable : note input cannot be modified
+    return input;
 }
 
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("double_value_function") {
-  assert(double_value_function(1) == 2);
-  REQUIRE(double_value_function(0) == 0);
-  REQUIRE(double_value_function(13) == 26);
+    assert(double_value_function(1) == 2);
+    REQUIRE(double_value_function(0) == 0);
+    REQUIRE(double_value_function(13) == 26);
 }

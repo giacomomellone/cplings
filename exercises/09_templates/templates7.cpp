@@ -16,7 +16,7 @@
 
 template <typename C, C v> // Value holder
 struct constant_holder {
-  static constexpr C value = v;
+    static constexpr C value = v;
 };
 
 using true_type = constant_holder<bool, true>;
@@ -31,26 +31,26 @@ struct is_pointer<T *> : true_type {};
 // Use 'if constexpr (is_pointer<C>::value) { } else { } to output
 // the dereferenced pointer or the value if it's not a pointer
 template <typename C> void show(C data) {
-  // TODO : Delete test and content of if condition
+    // TODO : Delete test and content of if condition
     if constexpr ( ...? /* check if the type is a pointer */) {
-      std::cout << *data << "\n";
+        std::cout << *data << "\n";
     } else {
-      std::cout << data << "\n";
+        std::cout << data << "\n";
     }
 }
 
 void test_templates7_0() {
-  const char val = 'A';
-  show(val);
+    const char val = 'A';
+    show(val);
 }
 void test_templates7_1() {
-  const char val = 'B';
-  show(&val);
+    const char val = 'B';
+    show(&val);
 }
 
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("test_template6") {
-  test_templates7_0();
-  test_templates7_1();
+    test_templates7_0();
+    test_templates7_1();
 }

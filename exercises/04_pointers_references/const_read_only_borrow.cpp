@@ -4,17 +4,17 @@
 #include "learning_support.hpp"
 
 struct Reading {
-  int value;
-  explicit Reading(int initial) : value(initial) {}
-  Reading(const Reading &) = delete;
+    int value;
+    explicit Reading(int initial) : value(initial) {}
+    Reading(const Reading &) = delete;
 };
 int read(Reading reading) {
-  return reading.value;
+    return reading.value;
 }
 
 // Tests specify the contract.
 TEST_CASE("borrow_reads_const_noncopyable_state") {
-  const Reading reading{42};
-  REQUIRE(read(reading) == 42);
-  REQUIRE(reading.value == 42);
+    const Reading reading{42};
+    REQUIRE(read(reading) == 42);
+    REQUIRE(reading.value == 42);
 }

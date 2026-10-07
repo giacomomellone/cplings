@@ -8,14 +8,14 @@
 // even after you already figured it out.
 
 int type_function(int input) {
-  x = input;
-  return x;
+    x = input;
+    return x;
 }
 
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("type_function") {
-  REQUIRE(type_function(0) == 0);
-  REQUIRE(type_function(1) == 1);
-  REQUIRE(type_function(13) == 13);
+    REQUIRE(type_function(0) == 0);
+    REQUIRE(type_function(1) == 1);
+    REQUIRE(type_function(13) == 13);
 }

@@ -7,19 +7,19 @@
 #include <thread>
 
 int compute_in_worker() {
-  std::atomic<int> result{0};
-  std::latch allow_finish{1};
-  std::thread worker([&] {
-    allow_finish.wait();
-    result.store(42);
-  });
-  const int observed = result.load();
-  allow_finish.count_down();
-  worker.join();
-  return observed;
+    std::atomic<int> result{0};
+    std::latch allow_finish{1};
+    std::thread worker([&] {
+        allow_finish.wait();
+        result.store(42);
+    });
+    const int observed = result.load();
+    allow_finish.count_down();
+    worker.join();
+    return observed;
 }
 
 // Tests specify the contract.
 TEST_CASE("joined_worker_result_is_visible_to_caller") {
-  REQUIRE(compute_in_worker() == 42);
+    REQUIRE(compute_in_worker() == 42);
 }

@@ -5,14 +5,14 @@
 #include <stdexcept>
 
 void fail_after_acquiring() {
-  [[maybe_unused]] auto *resource = new Tracked{9};
-  throw std::runtime_error("reading failed");
+    [[maybe_unused]] auto *resource = new Tracked{9};
+    throw std::runtime_error("reading failed");
 }
 
 // Tests specify the contract.
 TEST_CASE("unwinding_releases_resource_and_preserves_exception_type") {
-  const int before = Tracked::destroyed;
-  REQUIRE_THROWS_AS(fail_after_acquiring(), std::runtime_error);
-  REQUIRE(Tracked::live == 0);
-  REQUIRE(Tracked::destroyed == before + 1);
+    const int before = Tracked::destroyed;
+    REQUIRE_THROWS_AS(fail_after_acquiring(), std::runtime_error);
+    REQUIRE(Tracked::live == 0);
+    REQUIRE(Tracked::destroyed == before + 1);
 }

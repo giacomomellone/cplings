@@ -4,15 +4,15 @@
 #include "learning_support.hpp"
 
 int increment(int value) {
-  return ++value;
+    return ++value;
 }
 
 // Tests specify the contract.
 TEST_CASE("increment_changes_the_caller_but_not_an_independent_copy") {
-  int value = 10;
-  int copy = value;
-  REQUIRE(increment(value) == 11);
-  REQUIRE(value == 11);
-  REQUIRE(copy == 10);
-  REQUIRE(increment(value) == 12);
+    int value = 10;
+    int copy = value;
+    REQUIRE(increment(value) == 11);
+    REQUIRE(value == 11);
+    REQUIRE(copy == 10);
+    REQUIRE(increment(value) == 12);
 }

@@ -12,23 +12,23 @@
 // Step 2: Get the bar_for_fuzz and default_to_baz tests passing (see expected values at bottom of the file)!
 
 std::string fizz_if_foo(std::string fizzish) {
-  if (fizzish == "fizz") {
-    return "foo";
-  }
-  // Fix: Make new "else if" and "else" cases to pass the test
+    if (fizzish == "fizz") {
+        return "foo";
+    }
+    // Fix: Make new "else if" and "else" cases to pass the test
 }
 
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("foo_for_fizz") {
-  REQUIRE(fizz_if_foo("fizz") == "foo");
+    REQUIRE(fizz_if_foo("fizz") == "foo");
 }
 
 TEST_CASE("bar_for_fuzz") {
-  REQUIRE(fizz_if_foo("fuzz") == "bar");
+    REQUIRE(fizz_if_foo("fuzz") == "bar");
 }
 
 TEST_CASE("default_to_baz") {
-  REQUIRE(fizz_if_foo("other") == "baz");
-  REQUIRE(fizz_if_foo("") == "baz");
+    REQUIRE(fizz_if_foo("other") == "baz");
+    REQUIRE(fizz_if_foo("") == "baz");
 }

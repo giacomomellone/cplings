@@ -229,7 +229,7 @@ If you are interested in improving or adding new ones, please feel free to contr
 Contributions of any kind welcome!
 
 Exercise sources use clang-format 18 with the repository's `.clang-format`
-configuration (two spaces, no tabs). On Ubuntu, install it with
+configuration (four spaces per indentation level, no tabs). On Ubuntu, install it with
 `sudo apt install clang-format-18`, then run:
 
 ```sh

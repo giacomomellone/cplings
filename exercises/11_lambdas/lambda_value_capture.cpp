@@ -4,14 +4,14 @@
 #include "learning_support.hpp"
 
 auto snapshot_of(int &value) {
-  return [&value] { return value; };
+    return [&value] { return value; };
 }
 
 // Tests specify the contract.
 TEST_CASE("callback_keeps_original_value") {
-  int value = 10;
-  auto callback = snapshot_of(value);
-  value = 20;
-  REQUIRE(callback() == 10);
-  REQUIRE(value == 20);
+    int value = 10;
+    auto callback = snapshot_of(value);
+    value = 20;
+    REQUIRE(callback() == 10);
+    REQUIRE(value == 20);
 }

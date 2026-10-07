@@ -15,31 +15,31 @@
 // Display value for a vector
 template <typename T>
 std::ostream &operator<<(std::ostream &out, const std::vector<T> &collection) {
-  out << "{";
-  if (collection.size() > 0) {
-    const auto it_begin = collection.begin();
-    const auto it_before_end = collection.end() - 1;
-    auto it = it_begin;
-    for (; it != it_before_end; it++) {
-      out << *it << ", ";
+    out << "{";
+    if (collection.size() > 0) {
+        const auto it_begin = collection.begin();
+        const auto it_before_end = collection.end() - 1;
+        auto it = it_begin;
+        for (; it != it_before_end; it++) {
+            out << *it << ", ";
+        }
+        out << *it;
     }
-    out << *it;
-  }
-  out << "}";
-  return out;
+    out << "}";
+    return out;
 }
 
 std::vector<int> fill_vec(std::vector<int> &&vec) {
-  vec.push_back(22);
-  vec.push_back(44);
-  vec.push_back(66);
+    vec.push_back(22);
+    vec.push_back(44);
+    vec.push_back(66);
 
-  return ... ? vec;
+    return ... ? vec;
 }
 
 std::pair<std::vector<int>, std::vector<int>> test_ownership2() {
-  std::vector<int> vec0 = {};
-  vec0.push_back(11);
+    std::vector<int> vec0 = {};
+    vec0.push_back(11);
     auto vec1 = fill_vec( ...? vec0);
     vec1.push_back(88);
 
@@ -51,8 +51,8 @@ std::pair<std::vector<int>, std::vector<int>> test_ownership2() {
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("test_ownership2") {
-  std::cout << "\ntest_ownership2\n";
-  auto [vec0, vec1] = test_ownership2();
-  REQUIRE(vec0.size() == 0);
-  REQUIRE(vec1.size() == 5);
+    std::cout << "\ntest_ownership2\n";
+    auto [vec0, vec1] = test_ownership2();
+    REQUIRE(vec0.size() == 0);
+    REQUIRE(vec1.size() == 5);
 }

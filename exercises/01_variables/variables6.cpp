@@ -9,11 +9,11 @@
 
 const int y = ; // y is a global variable. Fix it's definition.
 int global_var_10_function() {
-  return y;
+    return y;
 }
 
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("output_10_function") {
-  assert(global_var_10_function() == 10);
+    assert(global_var_10_function() == 10);
 }
