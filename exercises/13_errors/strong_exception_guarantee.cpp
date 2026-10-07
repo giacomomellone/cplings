@@ -6,17 +6,18 @@
 #include <string>
 #include <utility>
 
-void rename(std::string& current, std::string candidate) {
-    current.clear();
-    if (candidate.empty()) throw std::invalid_argument("empty name");
-    current = std::move(candidate);
+void rename(std::string &current, std::string candidate) {
+  current.clear();
+  if (candidate.empty())
+    throw std::invalid_argument("empty name");
+  current = std::move(candidate);
 }
 
 // Tests specify the contract.
 TEST_CASE("failed_update_preserves_previous_state") {
-    std::string name = "Ada";
-    REQUIRE_THROWS_AS(rename(name, ""), std::invalid_argument);
-    REQUIRE(name == "Ada");
-    rename(name, "Grace");
-    REQUIRE(name == "Grace");
+  std::string name = "Ada";
+  REQUIRE_THROWS_AS(rename(name, ""), std::invalid_argument);
+  REQUIRE(name == "Ada");
+  rename(name, "Grace");
+  REQUIRE(name == "Grace");
 }

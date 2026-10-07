@@ -13,46 +13,43 @@
 // Step 1: Make me compile. Let fill_vec borrow the input vector to
 // permanently modify it; References are a nice way of borrowing a variable.
 
-
 // Display value for a vector
-template<typename T>
-std::ostream& operator<< (std::ostream& out, const std::vector<T>& collection) {
-    out << "{";
-    if (collection.size() > 0) {
-        const auto it_begin = collection.begin();
-        const auto it_before_end = collection.end() - 1;
-        auto it = it_begin;
-        for (; it != it_before_end; it++) {
-            out << *it << ", ";
-        }
-        out << *it;
+template <typename T>
+std::ostream &operator<<(std::ostream &out, const std::vector<T> &collection) {
+  out << "{";
+  if (collection.size() > 0) {
+    const auto it_begin = collection.begin();
+    const auto it_before_end = collection.end() - 1;
+    auto it = it_begin;
+    for (; it != it_before_end; it++) {
+      out << *it << ", ";
     }
-    out << "}";
-    return out;
+    out << *it;
+  }
+  out << "}";
+  return out;
 }
-
 
 void fill_vec(std::vector<int> vec) {
-    vec.push_back(22);
-    vec.push_back(44);
-    vec.push_back(66);
+  vec.push_back(22);
+  vec.push_back(44);
+  vec.push_back(66);
 }
 
-
 std::vector<int> test_ownership1() {
-    std::vector<int> vec = {};
-    vec.push_back(11);
-    fill_vec(vec);
-    vec.push_back(88);
+  std::vector<int> vec = {};
+  vec.push_back(11);
+  fill_vec(vec);
+  vec.push_back(88);
 
-    std::cout << "vec has length " << vec.size() << " content " << vec << "\n";
-    return vec;
+  std::cout << "vec has length " << vec.size() << " content " << vec << "\n";
+  return vec;
 }
 
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("test_ownership1") {
-    std::cout << "\ntest_ownership1\n";
-    const auto vec = test_ownership1();
-    REQUIRE(vec.size() == 5);
+  std::cout << "\ntest_ownership1\n";
+  const auto vec = test_ownership1();
+  REQUIRE(vec.size() == 5);
 }

@@ -5,15 +5,12 @@
 // Make me compile! Go to the folder hint if you want a hint :)
 
 // We sometimes encourage you to keep trying things on a given exercise,
-// even after you already figured it out. 
-
-
+// even after you already figured it out.
 
 int function1() {
   callme();
   return 0;
 }
-
 
 #include <catch2/catch_test_macros.hpp>
 

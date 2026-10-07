@@ -228,6 +228,22 @@ If you are interested in improving or adding new ones, please feel free to contr
 
 Contributions of any kind welcome!
 
+Exercise sources use clang-format 18 with the repository's `.clang-format`
+configuration (two spaces, no tabs). On Ubuntu, install it with
+`sudo apt install clang-format-18`, then run:
+
+```sh
+just format        # Format all exercise sources
+just format-check  # Check formatting without changing files
+```
+
+Without `just`, run `clang-format-18 -i exercises/*/*.cpp` or
+`clang-format-18 --dry-run --Werror exercises/*/*.cpp`. If your clang-format 18
+binary has another name, use `CLANG_FORMAT=clang-format just format`.
+Formatting works on the deliberately unfinished exercises and preserves their
+teaching comments and include order. CI checks the exercise formatting on every
+push and pull request.
+
 
 ## Some technical notes
 

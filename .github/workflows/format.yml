@@ -1,0 +1,11 @@
+name: Exercise formatting
+
+on: [push, pull_request]
+
+jobs:
+  format:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y clang-format-18
+      - run: clang-format-18 --dry-run --Werror exercises/*/*.cpp

@@ -5,14 +5,14 @@
 #include <algorithm>
 #include <vector>
 
-auto count_nonnegative(const std::vector<int>& values) {
-    return std::count_if(values.begin(), values.end(), [](int value) { return value > 0; });
+auto count_nonnegative(const std::vector<int> &values) {
+  return std::count_if(values.begin(), values.end(), [](int value) { return value > 0; });
 }
 
 // Tests specify the contract.
 TEST_CASE("predicate_handles_mixed_empty_and_boundary_inputs") {
-    REQUIRE(count_nonnegative({-2, 0, 3, 0}) == 3);
-    REQUIRE(count_nonnegative({}) == 0);
-    REQUIRE(count_nonnegative({-1, -2}) == 0);
-    REQUIRE(count_nonnegative({0}) == 1);
+  REQUIRE(count_nonnegative({-2, 0, 3, 0}) == 3);
+  REQUIRE(count_nonnegative({}) == 0);
+  REQUIRE(count_nonnegative({-1, -2}) == 0);
+  REQUIRE(count_nonnegative({0}) == 1);
 }

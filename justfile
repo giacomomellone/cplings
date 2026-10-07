@@ -1,6 +1,16 @@
 default:
     @just --list
 
+clang_format := env_var_or_default("CLANG_FORMAT", "clang-format-18")
+
+# Format exercise sources, including unfinished exercises.
+format:
+    {{clang_format}} -i exercises/*/*.cpp
+
+# Check exercise formatting without changing files.
+format-check:
+    {{clang_format}} --dry-run --Werror exercises/*/*.cpp
+
 # Resume exercises with automatic progression.
 run *args:
     python3 cplings.py --auto {{args}}

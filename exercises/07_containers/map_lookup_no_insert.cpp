@@ -5,16 +5,16 @@
 #include <map>
 #include <string>
 
-int read_or_zero(std::map<std::string, int>& values, const std::string& key) {
-    return values[key];
+int read_or_zero(std::map<std::string, int> &values, const std::string &key) {
+  return values[key];
 }
 
 // Tests specify the contract.
 TEST_CASE("lookup_does_not_insert_and_preserves_stored_zero") {
-    std::map<std::string, int> values{{"answer", 42}, {"zero", 0}};
-    REQUIRE(read_or_zero(values, "answer") == 42);
-    REQUIRE(read_or_zero(values, "zero") == 0);
-    REQUIRE(read_or_zero(values, "missing") == 0);
-    REQUIRE(values.size() == 2);
-    REQUIRE_FALSE(values.contains("missing"));
+  std::map<std::string, int> values{{"answer", 42}, {"zero", 0}};
+  REQUIRE(read_or_zero(values, "answer") == 42);
+  REQUIRE(read_or_zero(values, "zero") == 0);
+  REQUIRE(read_or_zero(values, "missing") == 0);
+  REQUIRE(values.size() == 2);
+  REQUIRE_FALSE(values.contains("missing"));
 }

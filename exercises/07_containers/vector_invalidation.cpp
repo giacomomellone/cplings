@@ -4,18 +4,18 @@
 #include "learning_support.hpp"
 #include <vector>
 
-int& first_after_growth(std::vector<int>& values) {
-    int& selected = values.front();
-    values.reserve(values.capacity() + 1); // Guaranteed reallocation; keep this line.
-    return selected;
+int &first_after_growth(std::vector<int> &values) {
+  int &selected = values.front();
+  values.reserve(values.capacity() + 1); // Guaranteed reallocation; keep this line.
+  return selected;
 }
 
 // Tests specify the contract.
 TEST_CASE("selected_element_remains_a_live_alias_after_growth") {
-    std::vector<int> values{7, 8};
-    int& selected = first_after_growth(values);
-    REQUIRE(selected == 7);
-    selected = 42;
-    REQUIRE(values.front() == 42);
-    REQUIRE(values[1] == 8);
+  std::vector<int> values{7, 8};
+  int &selected = first_after_growth(values);
+  REQUIRE(selected == 7);
+  selected = 42;
+  REQUIRE(values.front() == 42);
+  REQUIRE(values[1] == 8);
 }
