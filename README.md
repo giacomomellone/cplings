@@ -69,6 +69,55 @@ The exercises are sorted by topic and can be found in the subdirectory `cplings/
 The task is simple. Most exercises contain an error that keeps them from compiling, and it's up to you to fix it! Some exercises are also run as tests, but cplings handles them all the same. To run the exercises in the recommended order, execute:
 
 ### In Linux
+For an interactive runner (Python 3 and CMake required), run from the repository:
+
+```sh
+python3 cplings.py
+python3 cplings.py --auto
+```
+
+The runner builds and runs the tests for one exercise at a time, in the order
+listed in CMake. It resumes at the first exercise not recorded as completed in
+`.cplings-progress.txt`. On startup, other passing exercises are skipped
+immediately until the first failure. Edit the displayed file in your editor; saving a change triggers
+another check. Press `n` after its tests pass to advance, `r` to retry, or `q` to
+quit. In `--auto` mode, passing tests advance after three seconds. A failed build
+or test keeps you on the current exercise. Ctrl+C also quits.
+
+Use `--start variables2` to start at a particular exercise, or
+`--build-dir /path/to/build` to use another build directory. On Windows, use
+`python cplings.py` with Python 3 and CMake available in your terminal.
+
+### Sync progress between devices
+
+The runner saves completed exercise names in `.cplings-progress.txt` whenever it
+checks an exercise. This file contains no solution code. After quitting the runner,
+commit and push **only this file** to your fork:
+
+```sh
+git add .cplings-progress.txt
+git commit -m "Save exercise progress"
+git push
+```
+
+On another device, clone your fork (or run `git pull --ff-only` in an existing
+clone), then start the runner:
+
+```sh
+git clone https://github.com/giacomomellone/cplings
+cd cplings
+python3 cplings.py --auto
+```
+
+Previously completed exercises are skipped even though their source files in the
+new clone still contain the original exercises. `--start variables2` explicitly
+rechecks an earlier exercise and updates its completion status. Unfinished code
+and solution files remain local; this sync carries your place, not your code.
+Pull before starting a session on another device and push progress when finished.
+If Git reports a progress-file conflict, keep the union of completed exercise
+names, one per line. Exercise files are tracked, so `git add .` would also stage
+your solutions: use the explicit filename above instead.
+
 To run all exercises in predetermined order:
 
 ```sh
@@ -126,4 +175,3 @@ The cpling build system based on CMake and [CPM.make](https://github.com/cpm-cma
 
 ### How to use cmake
 https://cliutils.gitlab.io/modern-cmake/
-
