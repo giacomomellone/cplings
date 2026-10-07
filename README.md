@@ -90,6 +90,12 @@ Use `--start variables2` to start at a particular exercise, or
 
 ### Sync progress between devices
 
+With `just` installed, use `just sync-pull` before a session, `just run` to
+resume with automatic progression, and `just sync-push` when finished.
+`sync-push` commits only `.cplings-progress.txt`, even if other files are staged,
+and pushes to your branch's configured remote. If progress is unchanged, it
+skips the commit and still pushes. Run `just` to list the commands.
+
 The runner saves completed exercise names in `.cplings-progress.txt` whenever it
 checks an exercise. This file contains no solution code. After quitting the runner,
 commit and push **only this file** to your fork:
