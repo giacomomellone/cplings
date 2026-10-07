@@ -32,13 +32,29 @@ class RunnerTest(unittest.TestCase):
         self.assertEqual(ordered[-1].stem, "security4")
         self.assertTrue(all(source.is_file() for source in ordered))
 
+    def test_default_order_follows_topics_and_filenames_across_difficulties(self):
+        ordered = cplings.exercises()
+        names = [source.stem for source in ordered]
+        self.assertEqual(names[:14],
+                         [f"variables{i}" for i in range(1, 9)] +
+                         [f"functions{i}" for i in range(1, 7)])
+        topics = [source.parent.name for source in ordered]
+        self.assertEqual(topics, sorted(topics))
+        for topic in set(topics):
+            filenames = [source.name for source in ordered if source.parent.name == topic]
+            self.assertEqual(filenames, sorted(filenames))
+        self.assertEqual(len(ordered), 71)
+        self.assertEqual(set(ordered), {cplings.ROOT / item['path'] for item in cplings.lessons()})
+        self.assertGreater(cplings.lesson(ordered[7])['rank'], cplings.lesson(ordered[8])['rank'])
+
     def test_learning_path_has_increasing_levels_and_hints(self):
         lessons = cplings.lessons()
         self.assertEqual(len(lessons), 71)
         self.assertEqual(len({item['name'] for item in lessons}), 71)
         self.assertEqual([item['rank'] for item in lessons], sorted(item['rank'] for item in lessons))
         self.assertEqual({item['rank'] for item in lessons}, {1, 2, 3, 4, 5})
-        for source, item in zip(cplings.exercises(), lessons):
+        for item in lessons:
+            source = cplings.ROOT / item['path']
             self.assertTrue(source.is_file())
             self.assertEqual(source.stem, item['name'])
             self.assertTrue(cplings.hint(source))

@@ -11,7 +11,7 @@ format:
 format-check:
     {{clang_format}} --dry-run --Werror exercises/*/*.cpp
 
-# Resume exercises with automatic progression.
+# Resume exercises in topic and filename order with automatic progression.
 run *args:
     python3 cplings.py --auto {{args}}
 

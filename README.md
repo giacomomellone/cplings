@@ -78,8 +78,9 @@ just run          # Start or resume the complete terminal course
 
 Without `just`, use `python3 cplings.py --auto`.
 
-The runner builds and runs the tests for one exercise at a time along the
-71-exercise learning path in `learning_path.json`. It resumes at the first exercise not recorded as completed in
+The runner builds and runs the tests for all 71 exercises one at a time, sorted
+by topic folder and filename: `variables1` through `variables8`, then `functions1`
+through `functions6`, and so on, regardless of difficulty. It resumes at the first exercise not recorded as completed in
 `.cplings-progress.txt` or skipped in `.cplings-skipped.txt`. On startup, other passing exercises are advanced through
 immediately until the first failure. Edit the displayed file in your editor; saving a change triggers
 another check. The minimal terminal screen shows the current test and its result.
@@ -104,8 +105,9 @@ Use `--start variables2` to start at a particular exercise, or
 
 ### Learning path
 
-The path starts easy and increases the reasoning required while keeping edits
-small. Every lesson has learning text with `t` and a hint with `h`. Read the objective,
+`learning_path.json` groups lessons by difficulty and supplies their learning text
+and hints; it does not determine the runner's order. Every lesson has learning
+text with `t` and a hint with `h`. Read the objective,
 predict the result, make your change, and explain why the tests now pass.
 
 | Level | Lessons | Focus |

@@ -58,7 +58,7 @@ def lessons():
 
 
 def exercises(legacy=False):
-    return legacy_exercises() if legacy else [ROOT / item['path'] for item in lessons()]
+    return legacy_exercises() if legacy else sorted((ROOT / 'exercises').glob('*/*.cpp'))
 
 
 def lesson(source):
