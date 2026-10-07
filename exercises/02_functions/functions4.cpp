@@ -1,3 +1,4 @@
+// Difficulty: Easy (1/5)
 #include <iostream>
 
 // functions4.cpp
@@ -30,4 +31,10 @@ int function_syntax() {
 
 TEST_CASE("function_syntax") {
   REQUIRE(function_syntax() == 48);
+}
+
+TEST_CASE("sale_price_returns_values_for_both_branches") {
+  REQUIRE(sale_price(50) == 40);
+  REQUIRE(sale_price(15) == 12);
+  REQUIRE(sale_price(0) == -10);
 }

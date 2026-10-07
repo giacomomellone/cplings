@@ -1,3 +1,4 @@
+// Difficulty: Easy (1/5)
 #include <iostream>
 
 // functions2.cpp

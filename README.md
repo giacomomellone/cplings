@@ -64,7 +64,7 @@ Open the folder cplings in Visual Studio. Add support for CMake and run a build.
 
 ## Doing the exercises
 
-The exercises are sorted by topic and can be found in the subdirectory `cplings/exercises/<topic>`. For every topic there is an additional README file with some resources to get you started on the topic. We really recommend that you have a look at them before you start.
+The exercises are sorted by topic and can be found in the subdirectory `cplings/exercises/<topic>`. Press `t` in the runner for a concept explanation and a question to answer before editing. Topic README files provide additional resources where available.
 
 The task is simple. Most exercises contain an error that keeps them from compiling, and it's up to you to fix it! Some exercises are also run as tests, but cplings handles them all the same. To run the exercises in the recommended order, execute:
 
@@ -72,36 +72,88 @@ The task is simple. Most exercises contain an error that keeps them from compili
 For an interactive runner (Python 3 and CMake required), run from the repository:
 
 ```sh
-python3 cplings.py
-python3 cplings.py --auto
+just              # List the commands
+just run          # Start or resume the complete terminal course
 ```
 
-The runner builds and runs the tests for one exercise at a time, in the order
-listed in CMake. It resumes at the first exercise not recorded as completed in
-`.cplings-progress.txt`. On startup, other passing exercises are skipped
+Without `just`, use `python3 cplings.py --auto`.
+
+The runner builds and runs the tests for one exercise at a time along the
+71-exercise learning path in `learning_path.json`. It resumes at the first exercise not recorded as completed in
+`.cplings-progress.txt` or skipped in `.cplings-skipped.txt`. On startup, other passing exercises are advanced through
 immediately until the first failure. Edit the displayed file in your editor; saving a change triggers
-another check. Press `n` after its tests pass to advance, `r` to retry, or `q` to
-quit. In `--auto` mode, passing tests advance after three seconds. A failed build
+another check. The minimal terminal screen shows the current test and its result.
+Press `t` to learn the concept, `h` for a hint, `e` to open the exercise in
+`$VISUAL` or `$EDITOR` (defaults to `vi`), and `d` for full diagnostics.
+Press `l` for the course list: arrows or `j`/`k` select an exercise and Enter
+starts it, including completed or skipped exercises. Home/End jump to the ends.
+Press `n` after passing, `s` to mark the current exercise skipped and continue,
+`r` to retry, or `q` to quit.
+Press `a` to toggle automatic mode; learning text, hints, diagnostics, and the list pause its
+countdown. Esc closes those views. In `--auto` mode, passing tests advance after three seconds. A failed build
 or test keeps you on the current exercise. Ctrl+C also quits.
+
+Failures are red, passes green, running stages blue, hints yellow, and shortcuts
+cyan. Colors are automatic in a terminal and respect `NO_COLOR`. Use
+`just run --color always` to override that setting, or `--color never` for plain
+text. Redirected output is plain text unless colors are explicitly forced.
 
 Use `--start variables2` to start at a particular exercise, or
 `--build-dir /path/to/build` to use another build directory. On Windows, use
 `python cplings.py` with Python 3 and CMake available in your terminal.
 
+### Learning path
+
+The path starts easy and increases the reasoning required while keeping edits
+small. Every lesson has learning text with `t` and a hint with `h`. Read the objective,
+predict the result, make your change, and explain why the tests now pass.
+
+| Level | Lessons | Focus |
+| --- | ---: | --- |
+| Easy | 19 | Variables, functions, branches, references, const borrowing, boundaries, map lookup |
+| Moderate | 15 | Classes, containers, RAII, unique ownership, captures, algorithms, optional |
+| Intermediate | 17 | Templates, dispatch, returned lifetimes, move capture, span, unwinding, expected, joining |
+| Hard | 14 | Const and moves, invalidation, weak ownership, concepts, atomics, exception guarantees, security |
+| Difficult | 6 | Escaping callbacks, rollback, shutdown, cancellation, generic composition, combined safety audit |
+
+All 71 exercises live under `exercises/<topic>/`, including the 27 new lessons.
+Difficulty is a comment in each source file and appears in the runner; it does
+not determine the folder. The new lessons supply the test harness,
+so most fixes need only 1–5 lines. Concurrency tests use synchronization instead
+of sleeps. AddressSanitizer exposes the deliberately dangling memory in lifetime
+lessons; hanging tests stop after 30 seconds. Use a C++23 compiler and standard
+library supporting `std::expected` (the path was checked with GCC 13).
+
+The original 44 exercises and the 27 new lessons form one course. Use
+`just run --start variables8` to revisit any exercise, or select it with `l`.
+`--legacy` remains available for compatibility with the old 44-exercise order.
+Exercise identifiers stay unchanged, so existing progress remains valid.
+
+Skipped exercises appear as `skipped` in the list and are passed over on resume.
+They are not counted as completed. Select one to revisit it; passing its tests
+moves it from skipped to completed.
+
+The runner captures build output, runs each exercise's tests once, and stops a
+test after 30 seconds if it hangs. It configures the selected build directory
+with `CPLINGS_RUN_TESTS_AFTER_BUILD=OFF` so compile errors and test failures stay
+separate. To restore tests during standalone builds in that directory, run
+`cmake -S . -B build -DCPLINGS_RUN_TESTS_AFTER_BUILD=ON`.
+
 ### Sync progress between devices
 
 With `just` installed, use `just sync-pull` before a session, `just run` to
 resume with automatic progression, and `just sync-push` when finished.
-`sync-push` commits only `.cplings-progress.txt`, even if other files are staged,
+`sync-push` commits only `.cplings-progress.txt` and `.cplings-skipped.txt`,
+even if other files are staged,
 and pushes to your branch's configured remote. If progress is unchanged, it
 skips the commit and still pushes. Run `just` to list the commands.
 
 The runner saves completed exercise names in `.cplings-progress.txt` whenever it
-checks an exercise. This file contains no solution code. After quitting the runner,
-commit and push **only this file** to your fork:
+checks an exercise. Both progress files contain names only, with no solution code. After quitting the runner,
+commit and push **only these files** to your fork:
 
 ```sh
-git add .cplings-progress.txt
+git add .cplings-progress.txt .cplings-skipped.txt
 git commit -m "Save exercise progress"
 git push
 ```
@@ -120,8 +172,8 @@ new clone still contain the original exercises. `--start variables2` explicitly
 rechecks an earlier exercise and updates its completion status. Unfinished code
 and solution files remain local; this sync carries your place, not your code.
 Pull before starting a session on another device and push progress when finished.
-If Git reports a progress-file conflict, keep the union of completed exercise
-names, one per line. Exercise files are tracked, so `git add .` would also stage
+If Git reports a progress-file conflict, keep the union of names in each file,
+one per line; completion takes precedence over skipping. Exercise files are tracked, so `git add .` would also stage
 your solutions: use the explicit filename above instead.
 
 To run all exercises in predetermined order:
@@ -136,14 +188,16 @@ This will try to verify the completion of every exercise in a predetermined orde
 OR, to run a specific exercise, tell make with exercise to run. For example:
 
 ```bash
-make variable2
+make variables2
 ```
 
 ### In Windows
 Visual Studio will let you choose the specific exercise you would like to solve.
 
 ## Hints
-You will find some help for specific exercises in the hints directory. Please note that this is work in progress.
+Press `h` in the terminal. The runner reads an existing hint file when present,
+otherwise the conceptual hint from `learning_path.json`. Press `t` for the
+learning explanation and prediction question.
 
 ## Continuing On
 

@@ -1,0 +1,602 @@
+{
+  "levels": [
+    {
+      "rank": 1,
+      "name": "Easy",
+      "exercises": [
+        {
+          "name": "variables1",
+          "path": "exercises/01_variables/variables1.cpp",
+          "objective": "Declare and initialize a value before reading it.",
+          "hint": "A variable needs a type and a value before it is read.",
+          "learn": "A declaration introduces a name and its type. Initialization gives the object its first value. Reading an uninitialized scalar can have undefined behavior, so make the value explicit before using it.",
+          "question": "What value exists at the first read, and where was it initialized?"
+        },
+        {
+          "name": "variables2",
+          "path": "exercises/01_variables/variables2.cpp",
+          "objective": "Choose a type that satisfies the function contract.",
+          "hint": "Compare the parameter type with the way the function uses it.",
+          "learn": "A function signature is a contract between caller and callee. The type controls which operations are valid and how arguments are represented. Compare the signature, the operations inside the function, and the values the tests supply.",
+          "question": "Which type makes the parameter and its uses agree?"
+        },
+        {
+          "name": "variables3",
+          "path": "exercises/01_variables/variables3.cpp",
+          "objective": "Compute with a const input without changing it.",
+          "hint": "A const parameter can be read in an expression, but assigning to it breaks its read-only promise.",
+          "learn": "const prevents modifying an object through that binding. It still permits reading the object and computing a different value from it. A function can return a transformed result while leaving its const input untouched.",
+          "question": "Does computing a new value require changing the input?"
+        },
+        {
+          "name": "variables4",
+          "path": "exercises/01_variables/variables4.cpp",
+          "objective": "Use a constexpr function in an ordinary expression.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Types, initialization, const, and representable ranges define which values an object can safely hold. Read the function contract before choosing a value or changing its type.",
+          "question": "Use a constexpr function in an ordinary expression. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "variables5",
+          "path": "exercises/01_variables/variables5.cpp",
+          "objective": "Initialize a local constant with the promised value.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Types, initialization, const, and representable ranges define which values an object can safely hold. Read the function contract before choosing a value or changing its type.",
+          "question": "Initialize a local constant with the promised value. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "variables6",
+          "path": "exercises/01_variables/variables6.cpp",
+          "objective": "Initialize a named constant at global scope.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Types, initialization, const, and representable ranges define which values an object can safely hold. Read the function contract before choosing a value or changing its type.",
+          "question": "Initialize a named constant at global scope. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "functions1",
+          "path": "exercises/02_functions/functions1.cpp",
+          "objective": "Make a function visible before its first call.",
+          "hint": "A declaration or definition must appear before a call. Read the original hint for more context.",
+          "learn": "C++ name lookup happens at the point where a name is used. A function declaration tells the compiler the name, parameter types, and return type. A definition also supplies the body; a separate declaration can make a later definition callable.",
+          "question": "What does the compiler know when it reaches callme()?"
+        },
+        {
+          "name": "functions2",
+          "path": "exercises/02_functions/functions2.cpp",
+          "objective": "Declare the type of a function parameter.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Signatures describe parameters and return values. Name lookup and scope determine which declaration a use refers to. A named expression can have different behavior from its declared type.",
+          "question": "Declare the type of a function parameter. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "functions3",
+          "path": "exercises/02_functions/functions3.cpp",
+          "objective": "Supply the argument required by a function signature.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Signatures describe parameters and return values. Name lookup and scope determine which declaration a use refers to. A named expression can have different behavior from its declared type.",
+          "question": "Supply the argument required by a function signature. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "functions4",
+          "path": "exercises/02_functions/functions4.cpp",
+          "objective": "Return the value promised by a function.",
+          "hint": "Check every path from the function entry to its return.",
+          "learn": "The return type is part of a function interface. void promises no value; a value-returning function must produce a suitable result on every reachable path. The caller uses that result independently of any output printed by the function.",
+          "question": "What value does each branch promise to the caller?"
+        },
+        {
+          "name": "if1",
+          "path": "exercises/03_if/if1.cpp",
+          "objective": "Choose the larger value for either argument order.",
+          "hint": "Trace both orders, equal values, and negative inputs.",
+          "learn": "An if statement chooses a path from a boolean condition. A correct comparison must work for both argument orders, equality, and negative values. Trace the condition and return value separately for each case.",
+          "question": "What happens when the larger number is the second argument?"
+        },
+        {
+          "name": "if2",
+          "path": "exercises/03_if/if2.cpp",
+          "objective": "Cover every branch, including the default case.",
+          "hint": "What should happen when neither named case matches?",
+          "learn": "An if/else-if/else chain expresses alternatives. The final else covers inputs that match none of the named cases. A return-value contract must still hold for those inputs, including an empty string.",
+          "question": "Which path handles an input you did not explicitly name?"
+        },
+        {
+          "name": "pointers_references1",
+          "path": "exercises/04_pointers_references/pointers_references1.cpp",
+          "objective": "Distinguish dereferencing a pointer from reading its address.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Pointers and references can borrow access to an existing object. Copying a pointer does not copy the object or extend its lifetime. Track the referent and distinguish its address from its value.",
+          "question": "Distinguish dereferencing a pointer from reading its address. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "pointers_references2",
+          "path": "exercises/04_pointers_references/pointers_references2.cpp",
+          "objective": "Observe how a reference aliases an existing object.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Pointers and references can borrow access to an existing object. Copying a pointer does not copy the object or extend its lifetime. Track the referent and distinguish its address from its value.",
+          "question": "Observe how a reference aliases an existing object. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "const_read_only_borrow",
+          "path": "exercises/04_pointers_references/const_read_only_borrow.cpp",
+          "objective": "Read a const, noncopyable object without taking ownership.",
+          "hint": "The caller promises read-only access, and copying is unavailable. Express both in the parameter type.",
+          "learn": "A const reference borrows an existing object without copying it and permits read-only access through that reference. The owner must keep the object alive for the duration of the call. Noncopyable types make accidental copies visible as compile errors.",
+          "question": "Can the function read this object without becoming its owner?"
+        },
+        {
+          "name": "references_copy_or_alias",
+          "path": "exercises/04_pointers_references/references_copy_or_alias.cpp",
+          "objective": "Mutate the caller through a reference instead of a copy.",
+          "hint": "The returned number can be correct while the caller stays unchanged. Which parameter binding aliases the caller?",
+          "learn": "Passing an int by value creates an independent parameter object. A reference parameter refers to the caller's object instead. Returning an updated number and changing the caller are separate observable effects.",
+          "question": "Which object changes: the parameter copy, the caller, or both?"
+        },
+        {
+          "name": "struct_invariant",
+          "path": "exercises/05_classes/struct_invariant.cpp",
+          "objective": "Implement the inclusive boundary contract of a small value type.",
+          "hint": "The valid range includes its two endpoints. Check a one-element range as well.",
+          "learn": "A value type combines data with operations that give it meaning. Its public contract determines boundary behavior. Here the range is inclusive, so its endpoints are valid members, including when both endpoints are the same.",
+          "question": "Which boundary values distinguish inclusive from exclusive behavior?"
+        },
+        {
+          "name": "containers1",
+          "path": "exercises/07_containers/containers1.cpp",
+          "objective": "Choose a standard container for a fixed-size sequence.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Choose a container by its contract: fixed size, growth, uniqueness, or association by key. Its access and insertion operations affect both values and container state.",
+          "question": "Choose a standard container for a fixed-size sequence. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "map_lookup_no_insert",
+          "path": "exercises/07_containers/map_lookup_no_insert.cpp",
+          "objective": "Look up a value without inserting a missing key.",
+          "hint": "Some map access operations modify the container. Find an operation that can report absence without insertion.",
+          "learn": "Map lookup can have side effects: operator[] creates an entry for a missing key. A read-only lookup should report absence without changing the map. Inspect the container after the call as well as the returned value.",
+          "question": "Can a lookup return the right number while still changing the map incorrectly?"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Moderate",
+      "exercises": [
+        {
+          "name": "raii_early_return",
+          "path": "exercises/06_raii/raii_early_return.cpp",
+          "objective": "Release a resource on every exit from its scope.",
+          "hint": "A cleanup statement at the bottom is bypassed by early returns. Let the lifetime of an owner express cleanup.",
+          "learn": "RAII connects resource ownership to object lifetime. A scoped owner releases its resource in its destructor, including when execution returns early. Manual cleanup at the bottom of a function only runs on paths that reach it.",
+          "question": "Which exit paths reach the manual cleanup statement?"
+        },
+        {
+          "name": "unique_transfer",
+          "path": "exercises/08_ownership/unique_transfer.cpp",
+          "objective": "Transfer a unique owner explicitly and observe its empty source.",
+          "hint": "A named variable is an lvalue. Consuming a unique owner requires expressing a transfer rather than a copy.",
+          "learn": "unique_ptr represents exclusive ownership and cannot be copied. Moving it transfers ownership, leaving the source empty. A named variable is an lvalue expression even when its type is movable; transfer must be explicit at the consuming call.",
+          "question": "Who owns the allocation before, during, and after the call?"
+        },
+        {
+          "name": "lambda_value_capture",
+          "path": "exercises/11_lambdas/lambda_value_capture.cpp",
+          "objective": "Capture a snapshot instead of observing later mutations.",
+          "hint": "The callback promises the value at creation time. Does its capture own that value or refer to the outer object?",
+          "learn": "A lambda is an object whose captures become its state. Capturing an int by value stores a snapshot; capturing by reference observes the original object. Later changes to the original distinguish these two models.",
+          "question": "Will the callback see the value at creation time or at invocation time?"
+        },
+        {
+          "name": "lambda_reference_capture",
+          "path": "exercises/11_lambdas/lambda_reference_capture.cpp",
+          "objective": "Let a callback update a still-live caller-owned value.",
+          "hint": "Here the outer object outlives the callback. A private copy changes only the closure, not the caller.",
+          "learn": "A reference capture accesses the original object, so mutations are visible to its owner. A mutable value capture can change its private copy instead. Borrowed state must outlive every invocation of the callback.",
+          "question": "Does mutable change the caller's object, or only the closure's copy?"
+        },
+        {
+          "name": "algorithm_predicate",
+          "path": "exercises/15_algorithms/algorithm_predicate.cpp",
+          "objective": "Express a counting contract with a predicate, including zero.",
+          "hint": "The boundary is part of the contract: nonnegative includes zero. Keep the algorithm and change its predicate.",
+          "learn": "Algorithms separate traversal from the decision applied to each element. count_if counts elements for which a predicate is true. Boundary and empty inputs clarify the predicate's mathematical meaning without requiring a hand-written loop.",
+          "question": "Does nonnegative include zero?"
+        },
+        {
+          "name": "optional_lookup",
+          "path": "exercises/07_containers/optional_lookup.cpp",
+          "objective": "Represent absence separately from a valid zero.",
+          "hint": "An optional containing zero still contains a value. How do you represent no value at all?",
+          "learn": "optional<T> separates presence from absence. A present value can be zero, false, or an empty string; none of these implies absence. Check has_value before accessing value when the result may be missing.",
+          "question": "How can a caller distinguish stored zero from a missing entry?"
+        },
+        {
+          "name": "functions5",
+          "path": "exercises/02_functions/functions5.cpp",
+          "objective": "Give a lambda a parameter and a value-returning signature.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Signatures describe parameters and return values. Name lookup and scope determine which declaration a use refers to. A named expression can have different behavior from its declared type.",
+          "question": "Give a lambda a parameter and a value-returning signature. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "functions6",
+          "path": "exercises/02_functions/functions6.cpp",
+          "objective": "Distinguish global, namespace, parameter, and local scopes.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Signatures describe parameters and return values. Name lookup and scope determine which declaration a use refers to. A named expression can have different behavior from its declared type.",
+          "question": "Distinguish global, namespace, parameter, and local scopes. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "classes1",
+          "path": "exercises/05_classes/classes1.cpp",
+          "objective": "Initialize inherited state without hiding it with another member.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Construction establishes object state, including base-class state. Member hiding and virtual dispatch are different mechanisms: inspect whether a call uses an object, reference, or pointer and whether the interface is virtual.",
+          "question": "Initialize inherited state without hiding it with another member. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "classes2",
+          "path": "exercises/05_classes/classes2.cpp",
+          "objective": "Implement construction and operations for a geometric value.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Construction establishes object state, including base-class state. Member hiding and virtual dispatch are different mechanisms: inspect whether a call uses an object, reference, or pointer and whether the interface is virtual.",
+          "question": "Implement construction and operations for a geometric value. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "classes3",
+          "path": "exercises/05_classes/classes3.cpp",
+          "objective": "Initialize the base-class part of a derived object.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Construction establishes object state, including base-class state. Member hiding and virtual dispatch are different mechanisms: inspect whether a call uses an object, reference, or pointer and whether the interface is virtual.",
+          "question": "Initialize the base-class part of a derived object. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "containers2",
+          "path": "exercises/07_containers/containers2.cpp",
+          "objective": "Choose a container whose contract prevents duplicate entries.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Choose a container by its contract: fixed size, growth, uniqueness, or association by key. Its access and insertion operations affect both values and container state.",
+          "question": "Choose a container whose contract prevents duplicate entries. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "containers3",
+          "path": "exercises/07_containers/containers3.cpp",
+          "objective": "Represent sparse keys with an ordered associative container.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Choose a container by its contract: fixed size, growth, uniqueness, or association by key. Its access and insertion operations affect both values and container state.",
+          "question": "Represent sparse keys with an ordered associative container. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "ownership1",
+          "path": "exercises/08_ownership/ownership1.cpp",
+          "objective": "Trace copying and observation through a function parameter.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "An owner controls a resource lifetime; a borrower only accesses it. unique_ptr transfers exclusive ownership, while shared_ptr adds shared owners. std::move changes an expression category and does not itself transfer a resource.",
+          "question": "Trace copying and observation through a function parameter. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "templates1",
+          "path": "exercises/09_templates/templates1.cpp",
+          "objective": "Generalize a comparison to preserve its argument type.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
+          "question": "Generalize a comparison to preserve its argument type. Which statement prevents that contract from holding?"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Intermediate",
+      "exercises": [
+        {
+          "name": "lifetime_return_value",
+          "path": "exercises/12_lifetimes/lifetime_return_value.cpp",
+          "objective": "Return an owner when the local text must survive its scope.",
+          "hint": "A view does not extend the lifetime of a local string. The return type must express ownership.",
+          "learn": "An owning string keeps its characters alive. string_view only refers to characters stored elsewhere and does not extend their lifetime. Returning a view into a local string leaves the caller with a reference to destroyed storage.",
+          "question": "Which object owns the characters after the function returns?"
+        },
+        {
+          "name": "lambda_move_capture",
+          "path": "exercises/11_lambdas/lambda_move_capture.cpp",
+          "objective": "Return a callback that owns a noncopyable resource.",
+          "hint": "The owner cannot be copied. An initialized capture can transfer ownership into the closure.",
+          "learn": "A returned lambda must carry any owned state it needs after its factory exits. An initialized capture can move a noncopyable resource into the closure. The closure then controls the resource lifetime and is itself move-only.",
+          "question": "When should the captured resource be destroyed?"
+        },
+        {
+          "name": "span_borrow",
+          "path": "exercises/12_lifetimes/span_borrow.cpp",
+          "objective": "Use a span to mutate original array or vector elements.",
+          "hint": "A span borrows storage, but a range-loop binding may still copy each element. Which binding keeps the alias?",
+          "learn": "span is a non-owning view over contiguous elements. It can refer to arrays or vectors without copying their storage. A range-loop variable declared by value still copies each element, even when the range itself borrows mutable storage.",
+          "question": "Does the loop variable alias the element in the original container?"
+        },
+        {
+          "name": "raii_unwind",
+          "path": "exercises/06_raii/raii_unwind.cpp",
+          "objective": "Release owned resources while a typed exception unwinds the scope.",
+          "hint": "Throwing bypasses manual cleanup, but destructors still run for local owners.",
+          "learn": "Throwing an exception unwinds completed automatic objects in the scopes being exited. Their destructors run before a matching handler receives the exception. Owning resources with local RAII objects makes cleanup follow that same lifetime rule.",
+          "question": "What survives the throw, and what must be released during unwinding?"
+        },
+        {
+          "name": "expected_parse",
+          "path": "exercises/13_errors/expected_parse.cpp",
+          "objective": "Return either an integer or a precise parse error.",
+          "hint": "Zero is a successful integer, not an error. Preserve from_chars errors, and reject unconsumed input separately.",
+          "learn": "expected<T, E> represents either a value or an error. Parsing zero is a successful value, while invalid text and overflow are distinct failures. from_chars also reports where parsing stopped, so consuming only part of the input needs an explicit decision.",
+          "question": "Which results are values, and which must preserve an error code?"
+        },
+        {
+          "name": "threads_join_scope",
+          "path": "exercises/14_concurrency/threads_join_scope.cpp",
+          "objective": "Read a worker result only after joining its thread.",
+          "hint": "The latch deliberately delays the worker. Joining creates the completion boundary; move the observation across it.",
+          "learn": "A thread runs independently of its creator. join waits for completion and establishes synchronization with that completion. A result read before joining can observe unfinished work; the supplied latch makes that ordering visible without timing guesses.",
+          "question": "At what point is the worker guaranteed to have written its result?"
+        },
+        {
+          "name": "variables7",
+          "path": "exercises/01_variables/variables7.cpp",
+          "objective": "Reason about integer widths and signed versus unsigned values.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Types, initialization, const, and representable ranges define which values an object can safely hold. Read the function contract before choosing a value or changing its type.",
+          "question": "Reason about integer widths and signed versus unsigned values. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "classes4",
+          "path": "exercises/05_classes/classes4.cpp",
+          "objective": "Use base pointers to observe virtual dispatch.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Construction establishes object state, including base-class state. Member hiding and virtual dispatch are different mechanisms: inspect whether a call uses an object, reference, or pointer and whether the interface is virtual.",
+          "question": "Use base pointers to observe virtual dispatch. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "raii1",
+          "path": "exercises/06_raii/raii1.cpp",
+          "objective": "Connect an acquired resource to construction and destruction.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "RAII binds resources to owner lifetimes. Copies of owning raw pointers can accidentally create two deleting owners. Trace construction, copying, and destruction rather than relying only on the final return value.",
+          "question": "Connect an acquired resource to construction and destruction. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "ownership2",
+          "path": "exercises/08_ownership/ownership2.cpp",
+          "objective": "Distinguish borrowing, moving, and a named rvalue reference.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "An owner controls a resource lifetime; a borrower only accesses it. unique_ptr transfers exclusive ownership, while shared_ptr adds shared owners. std::move changes an expression category and does not itself transfer a resource.",
+          "question": "Distinguish borrowing, moving, and a named rvalue reference. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "ownership3",
+          "path": "exercises/08_ownership/ownership3.cpp",
+          "objective": "Forward an owned value through nested function calls.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "An owner controls a resource lifetime; a borrower only accesses it. unique_ptr transfers exclusive ownership, while shared_ptr adds shared owners. std::move changes an expression category and does not itself transfer a resource.",
+          "question": "Forward an owned value through nested function calls. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "ownership4",
+          "path": "exercises/08_ownership/ownership4.cpp",
+          "objective": "Keep a unique owner while borrowing access in a helper.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "An owner controls a resource lifetime; a borrower only accesses it. unique_ptr transfers exclusive ownership, while shared_ptr adds shared owners. std::move changes an expression category and does not itself transfer a resource.",
+          "question": "Keep a unique owner while borrowing access in a helper. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "ownership5",
+          "path": "exercises/08_ownership/ownership5.cpp",
+          "objective": "Borrow a unique-owned container without another owner.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "An owner controls a resource lifetime; a borrower only accesses it. unique_ptr transfers exclusive ownership, while shared_ptr adds shared owners. std::move changes an expression category and does not itself transfer a resource.",
+          "question": "Borrow a unique-owned container without another owner. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "templates2",
+          "path": "exercises/09_templates/templates2.cpp",
+          "objective": "Generalize an algorithm over vector element types.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
+          "question": "Generalize an algorithm over vector element types. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "templates3",
+          "path": "exercises/09_templates/templates3.cpp",
+          "objective": "Generalize an algorithm over different container types.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
+          "question": "Generalize an algorithm over different container types. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "templates4",
+          "path": "exercises/09_templates/templates4.cpp",
+          "objective": "Parameterize related classes with a type.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
+          "question": "Parameterize related classes with a type. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "templates5",
+          "path": "exercises/09_templates/templates5.cpp",
+          "objective": "Use type and value template parameters together.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
+          "question": "Use type and value template parameters together. Which statement prevents that contract from holding?"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Hard",
+      "exercises": [
+        {
+          "name": "move_const_trap",
+          "path": "exercises/08_ownership/move_const_trap.cpp",
+          "objective": "Explain why const prevents transferring a unique owner.",
+          "hint": "std::move changes the expression category; it does not remove const. Which promise conflicts with ownership transfer?",
+          "learn": "std::move is a cast to an rvalue expression; it does not move anything by itself or remove const. A move constructor decides what transfer occurs. Moving a unique owner requires changing its source, which conflicts with a const source.",
+          "question": "What promise does const make that ownership transfer cannot keep?"
+        },
+        {
+          "name": "vector_invalidation",
+          "path": "exercises/07_containers/vector_invalidation.cpp",
+          "objective": "Reacquire an element after vector storage is reallocated.",
+          "hint": "reserve can invalidate every reference into the vector. Preserve the element identity without preserving its old address.",
+          "learn": "When vector reallocates, its elements move to new storage. References, pointers, and iterators into the old storage become invalid. A logical element identity, such as an index, can survive growth and be used to reacquire a current reference.",
+          "question": "Does the old address still identify a live element after reserve?"
+        },
+        {
+          "name": "weak_observer",
+          "path": "exercises/08_ownership/weak_observer.cpp",
+          "objective": "Break a shared ownership cycle with a non-owning back-link.",
+          "hint": "The forward link owns the next node. Does the back-link need to keep its predecessor alive too?",
+          "learn": "shared_ptr keeps an object alive while any shared owner remains. Cycles can keep every object in the cycle alive forever. weak_ptr observes shared storage without becoming another owner; lock obtains a temporary owner only if the object still exists.",
+          "question": "Which link owns the next object, and which link merely observes it?"
+        },
+        {
+          "name": "concept_constraint",
+          "path": "exercises/09_templates/concept_constraint.cpp",
+          "objective": "Constrain a generic operation to non-bool integral types.",
+          "hint": "Check the interface, not just one instantiation. A requires-clause can reject types before the function body is instantiated.",
+          "learn": "A concept constrains the interface of a template before its body is instantiated. A requires-expression can test whether a call is accepted. Successful examples alone do not prove a contract: also test types that should be rejected.",
+          "question": "Does the function reject invalid types at the interface, or only fail later inside its body?"
+        },
+        {
+          "name": "atomic_increment",
+          "path": "exercises/14_concurrency/atomic_increment.cpp",
+          "objective": "Make an increment indivisible instead of splitting load and store.",
+          "hint": "Atomic reads and writes alone do not make their combination atomic. The barrier makes both workers read the same old value.",
+          "learn": "Individual atomic loads and stores avoid a data race on the atomic object, but a load followed by a store is still two operations. Another thread can intervene between them. A read-modify-write operation performs the update indivisibly.",
+          "question": "Can both workers legally read the same old value?"
+        },
+        {
+          "name": "strong_exception_guarantee",
+          "path": "exercises/13_errors/strong_exception_guarantee.cpp",
+          "objective": "Keep the previous value unchanged when validation throws.",
+          "hint": "Validation can fail. Delay mutation until all checks that may reject the candidate have succeeded.",
+          "learn": "The strong exception guarantee promises that a failed operation leaves the previous observable state unchanged. Validate a candidate before changing live state. RAII prevents leaks, but that alone does not restore already-mutated data.",
+          "question": "What state should the caller see after validation throws?"
+        },
+        {
+          "name": "variables8",
+          "path": "exercises/01_variables/variables8.cpp",
+          "objective": "Enforce bounds across safe arithmetic and container growth.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Types, initialization, const, and representable ranges define which values an object can safely hold. Read the function contract before choosing a value or changing its type.",
+          "question": "Enforce bounds across safe arithmetic and container growth. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "raii2",
+          "path": "exercises/06_raii/raii2.cpp",
+          "objective": "Trace ownership when resource handles are copied and destroyed.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "RAII binds resources to owner lifetimes. Copies of owning raw pointers can accidentally create two deleting owners. Trace construction, copying, and destruction rather than relying only on the final return value.",
+          "question": "Trace ownership when resource handles are copied and destroyed. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "ownership6",
+          "path": "exercises/08_ownership/ownership6.cpp",
+          "objective": "Trace shared resource owners across nested calls.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "An owner controls a resource lifetime; a borrower only accesses it. unique_ptr transfers exclusive ownership, while shared_ptr adds shared owners. std::move changes an expression category and does not itself transfer a resource.",
+          "question": "Trace shared resource owners across nested calls. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "templates6",
+          "path": "exercises/09_templates/templates6.cpp",
+          "objective": "Describe type properties with template specialization.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
+          "question": "Describe type properties with template specialization. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "templates7",
+          "path": "exercises/09_templates/templates7.cpp",
+          "objective": "Choose a valid implementation branch at compile time.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
+          "question": "Choose a valid implementation branch at compile time. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "security1",
+          "path": "exercises/10_security/security1.cpp",
+          "objective": "Keep returned text alive beyond a temporary string.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "A memory-safe interface preserves ownership, lifetimes, bounds, and numeric ranges together. Inspect every conversion and every resource boundary. A successful return alone does not prove the absence of undefined behavior.",
+          "question": "Keep returned text alive beyond a temporary string. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "security2",
+          "path": "exercises/10_security/security2.cpp",
+          "objective": "Borrow stack-owned objects without making deleting owners.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "A memory-safe interface preserves ownership, lifetimes, bounds, and numeric ranges together. Inspect every conversion and every resource boundary. A successful return alone does not prove the absence of undefined behavior.",
+          "question": "Borrow stack-owned objects without making deleting owners. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "security3",
+          "path": "exercises/10_security/security3.cpp",
+          "objective": "Preserve capacity and valid indexes when adding data.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "A memory-safe interface preserves ownership, lifetimes, bounds, and numeric ranges together. Inspect every conversion and every resource boundary. A successful return alone does not prove the absence of undefined behavior.",
+          "question": "Preserve capacity and valid indexes when adding data. Which statement prevents that contract from holding?"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Difficult",
+      "exercises": [
+        {
+          "name": "callback_lifetime_chain",
+          "path": "exercises/11_lambdas/callback_lifetime_chain.cpp",
+          "objective": "Make every dependency of an escaping callback outlive its creator.",
+          "hint": "One captured object owns its resource, but the other only views local text. Trace both lifetimes independently.",
+          "learn": "An escaping callback has a separate lifetime from its factory. Every captured dependency must either be owned by the callback or remain alive elsewhere. Owning one resource does not make a separately captured view safe; trace each dependency independently.",
+          "question": "Which captured dependency can dangle even though the unique resource is safe?"
+        },
+        {
+          "name": "transaction_rollback",
+          "path": "exercises/13_errors/transaction_rollback.cpp",
+          "objective": "Commit a multi-step update only after all failure points succeed.",
+          "hint": "Updating entries and total directly exposes partial state. Prepare a candidate separately and publish it only when complete.",
+          "learn": "A transaction-like update must publish all related state together. Prepare the changed state separately, then commit only after every potentially failing preparation step succeeds. Failure injection checks guarantees at intermediate points, not just at the start.",
+          "question": "What state is visible if an exception happens after only one field changes?"
+        },
+        {
+          "name": "bounded_queue_shutdown",
+          "path": "exercises/14_concurrency/bounded_queue_shutdown.cpp",
+          "objective": "Make queue waits respond to closure and drain buffered values safely.",
+          "hint": "A notification is not stored for future waiters. Both wait predicates must describe closure as well as data or capacity.",
+          "learn": "Condition variables coordinate waiting for a state protected by a mutex. Notifications are not remembered for future waiters, and waits can wake spuriously, so predicates describe when progress is allowed. Closure changes both producer and consumer rules, while buffered values may still be drained.",
+          "question": "What should wake a producer on a full queue, or a consumer on an empty queue, when the queue closes?"
+        },
+        {
+          "name": "jthread_cancellation",
+          "path": "exercises/14_concurrency/jthread_cancellation.cpp",
+          "objective": "Wake a waiting jthread when its stop token is requested.",
+          "hint": "jthread requests stop, but the worker must observe it. condition_variable_any provides a wait overload that takes a stop token.",
+          "learn": "jthread provides a stop source and joins on destruction, but its worker must cooperate with stop requests. A worker blocked in a wait must be able to observe cancellation there. A stop-aware wait connects the stop token to that blocking operation.",
+          "question": "How can a stop request reach a worker that is not currently executing its loop?"
+        },
+        {
+          "name": "security4",
+          "path": "exercises/10_security/security4.cpp",
+          "objective": "Audit narrowing, bounds, allocation, moves, and lifetime together.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "A memory-safe interface preserves ownership, lifetimes, bounds, and numeric ranges together. Inspect every conversion and every resource boundary. A successful return alone does not prove the absence of undefined behavior.",
+          "question": "Audit narrowing, bounds, allocation, moves, and lifetime together. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "move_only_generic_pipeline",
+          "path": "exercises/09_templates/move_only_generic_pipeline.cpp",
+          "objective": "Compose a constrained callable, unique ownership, and an error result.",
+          "hint": "The input belongs to the next stage after invocation. A named unique_ptr is still an lvalue; preserve the callable contract and transfer the input.",
+          "learn": "A generic stage can consume an exclusive owner and return either a new owner or an error. Constraints describe the callable contract; invocation must honor its ownership boundary. On failure, local owners still release resources through RAII.",
+          "question": "Where is ownership transferred, and who releases the resource when the stage rejects it?"
+        }
+      ]
+    }
+  ]
+}

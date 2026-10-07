@@ -1,3 +1,4 @@
+// Difficulty: Moderate (2/5)
 #include <iostream>
 
 // classes1.cpp

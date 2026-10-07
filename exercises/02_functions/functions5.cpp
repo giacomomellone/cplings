@@ -1,3 +1,4 @@
+// Difficulty: Moderate (2/5)
 #include <iostream>
 
 // functions5.cpp

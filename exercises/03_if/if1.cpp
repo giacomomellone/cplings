@@ -1,3 +1,4 @@
+// Difficulty: Easy (1/5)
 #include <iostream>
 
 // if1.cpp
@@ -23,4 +24,10 @@ TEST_CASE("ten_is_bigger_than_eight") {
 
 TEST_CASE("fortytwo_is_bigger_than_thirtytwo") {
     REQUIRE(bigger(42, 32) == 42);
+}
+
+TEST_CASE("bigger_handles_both_orders_equality_and_negatives") {
+    REQUIRE(bigger(8, 10) == 10);
+    REQUIRE(bigger(7, 7) == 7);
+    REQUIRE(bigger(-9, -2) == -2);
 }

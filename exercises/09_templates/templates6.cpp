@@ -1,3 +1,4 @@
+// Difficulty: Hard (4/5)
 #include <iostream>
 #include <vector>
 #include <string>

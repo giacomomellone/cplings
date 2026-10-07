@@ -9,6 +9,7 @@ project(cplings
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+option(CPLINGS_RUN_TESTS_AFTER_BUILD "Run exercise tests as post-build commands" ON)
 
 # Set default compile flags for GCC/Clang
 if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "GNU") )
@@ -83,4 +84,5 @@ set(CHAPTERS
 foreach(_test_case ${CHAPTERS})
   add_subdirectory (${EXERCISES_PATH}/${_test_case})
 endforeach()
-
+find_package(Threads REQUIRED)
+include(cmake/Exercises.cmake)

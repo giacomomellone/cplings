@@ -1,3 +1,4 @@
+// Difficulty: Easy (1/5)
 #include <iostream>
 #include <string>
 
@@ -31,4 +32,9 @@ TEST_CASE("foo_for_fizz") {
 
 TEST_CASE("bar_for_fuzz") {
     REQUIRE(fizz_if_foo("fuzz") == "bar");
+}
+
+TEST_CASE("default_to_baz") {
+    REQUIRE(fizz_if_foo("other") == "baz");
+    REQUIRE(fizz_if_foo("") == "baz");
 }

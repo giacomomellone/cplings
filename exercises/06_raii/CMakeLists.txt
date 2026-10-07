@@ -15,12 +15,14 @@ foreach(_exercise ${EXERCISES})
 
   # link dependencies
   target_link_libraries(${_exercise} ${MYPROJECT_LIBRARIES} ${UNIT_TESTING_LIBRARY} cplings)
-  add_custom_command(
-    TARGET ${_exercise}
-    POST_BUILD
-    COMMENT "Run Tests"
-    COMMAND ${_exercise}
-  )
+  if(CPLINGS_RUN_TESTS_AFTER_BUILD)
+    add_custom_command(
+      TARGET ${_exercise}
+      POST_BUILD
+      COMMENT "Run Tests"
+      COMMAND ${_exercise}
+    )
+  endif()
 endforeach()
 
 ##################################################################################################

@@ -27,8 +27,10 @@ class SyncTest(unittest.TestCase):
             run("git", "config", "user.name", "Sync test", cwd=first)
             run("git", "config", "user.email", "sync@example.invalid", cwd=first)
             progress = first / ".cplings-progress.txt"
+            skipped = first / ".cplings-skipped.txt"
             solution = first / "exercise.cpp"
             progress.write_text("")
+            skipped.write_text("")
             solution.write_text("original exercise\n")
             run("git", "add", ".", cwd=first)
             run("git", "commit", "-m", "Initial exercises", cwd=first)
@@ -45,8 +47,13 @@ class SyncTest(unittest.TestCase):
             just("sync-push", first)
             self.assertEqual(run("git", "rev-parse", "HEAD", cwd=first), head)
 
+            skipped.write_text("variables2\n")
+            just("sync-push", first)
+            self.assertEqual(run("git", "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD", cwd=first), ".cplings-skipped.txt")
+
             just("sync-pull", second)
             self.assertEqual((second / ".cplings-progress.txt").read_text(), "variables1\n")
+            self.assertEqual((second / ".cplings-skipped.txt").read_text(), "variables2\n")
             self.assertEqual((second / "exercise.cpp").read_text(), "original exercise\n")
 
 

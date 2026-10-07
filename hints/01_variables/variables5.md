@@ -1,2 +1,2 @@
 # Hint
-- Check the expected output in the test case (line 17). The test case expects the output to be the double of the input.
+- Read the expected return value in the test. A local constant needs its value at declaration; it cannot be assigned later.
