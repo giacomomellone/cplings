@@ -117,24 +117,24 @@
           "question": "Observe how a reference aliases an existing object. Which statement prevents that contract from holding?"
         },
         {
-          "name": "const_read_only_borrow",
-          "path": "exercises/04_pointers_references/const_read_only_borrow.cpp",
+          "name": "pointers_references3",
+          "path": "exercises/04_pointers_references/pointers_references3.cpp",
           "objective": "Read a const, noncopyable object without taking ownership.",
           "hint": "The caller promises read-only access, and copying is unavailable. Express both in the parameter type.",
           "learn": "A const reference borrows an existing object without copying it and permits read-only access through that reference. The owner must keep the object alive for the duration of the call. Noncopyable types make accidental copies visible as compile errors.",
           "question": "Can the function read this object without becoming its owner?"
         },
         {
-          "name": "references_copy_or_alias",
-          "path": "exercises/04_pointers_references/references_copy_or_alias.cpp",
+          "name": "pointers_references4",
+          "path": "exercises/04_pointers_references/pointers_references4.cpp",
           "objective": "Mutate the caller through a reference instead of a copy.",
           "hint": "The returned number can be correct while the caller stays unchanged. Which parameter binding aliases the caller?",
           "learn": "Passing an int by value creates an independent parameter object. A reference parameter refers to the caller's object instead. Returning an updated number and changing the caller are separate observable effects.",
           "question": "Which object changes: the parameter copy, the caller, or both?"
         },
         {
-          "name": "struct_invariant",
-          "path": "exercises/05_classes/struct_invariant.cpp",
+          "name": "classes5",
+          "path": "exercises/05_classes/classes5.cpp",
           "objective": "Implement the inclusive boundary contract of a small value type.",
           "hint": "The valid range includes its two endpoints. Check a one-element range as well.",
           "learn": "A value type combines data with operations that give it meaning. Its public contract determines boundary behavior. Here the range is inclusive, so its endpoints are valid members, including when both endpoints are the same.",
@@ -149,8 +149,8 @@
           "question": "Choose a standard container for a fixed-size sequence. Which statement prevents that contract from holding?"
         },
         {
-          "name": "map_lookup_no_insert",
-          "path": "exercises/07_containers/map_lookup_no_insert.cpp",
+          "name": "containers4",
+          "path": "exercises/07_containers/containers4.cpp",
           "objective": "Look up a value without inserting a missing key.",
           "hint": "Some map access operations modify the container. Find an operation that can report absence without insertion.",
           "learn": "Map lookup can have side effects: operator[] creates an entry for a missing key. A read-only lookup should report absence without changing the map. Inspect the container after the call as well as the returned value.",
@@ -163,48 +163,48 @@
       "name": "Moderate",
       "exercises": [
         {
-          "name": "raii_early_return",
-          "path": "exercises/06_raii/raii_early_return.cpp",
+          "name": "raii3",
+          "path": "exercises/06_raii/raii3.cpp",
           "objective": "Release a resource on every exit from its scope.",
           "hint": "A cleanup statement at the bottom is bypassed by early returns. Let the lifetime of an owner express cleanup.",
           "learn": "RAII connects resource ownership to object lifetime. A scoped owner releases its resource in its destructor, including when execution returns early. Manual cleanup at the bottom of a function only runs on paths that reach it.",
           "question": "Which exit paths reach the manual cleanup statement?"
         },
         {
-          "name": "unique_transfer",
-          "path": "exercises/08_ownership/unique_transfer.cpp",
+          "name": "ownership7",
+          "path": "exercises/08_ownership/ownership7.cpp",
           "objective": "Transfer a unique owner explicitly and observe its empty source.",
           "hint": "A named variable is an lvalue. Consuming a unique owner requires expressing a transfer rather than a copy.",
           "learn": "unique_ptr represents exclusive ownership and cannot be copied. Moving it transfers ownership, leaving the source empty. A named variable is an lvalue expression even when its type is movable; transfer must be explicit at the consuming call.",
           "question": "Who owns the allocation before, during, and after the call?"
         },
         {
-          "name": "lambda_value_capture",
-          "path": "exercises/11_lambdas/lambda_value_capture.cpp",
+          "name": "lambdas1",
+          "path": "exercises/11_lambdas/lambdas1.cpp",
           "objective": "Capture a snapshot instead of observing later mutations.",
           "hint": "The callback promises the value at creation time. Does its capture own that value or refer to the outer object?",
           "learn": "A lambda is an object whose captures become its state. Capturing an int by value stores a snapshot; capturing by reference observes the original object. Later changes to the original distinguish these two models.",
           "question": "Will the callback see the value at creation time or at invocation time?"
         },
         {
-          "name": "lambda_reference_capture",
-          "path": "exercises/11_lambdas/lambda_reference_capture.cpp",
+          "name": "lambdas2",
+          "path": "exercises/11_lambdas/lambdas2.cpp",
           "objective": "Let a callback update a still-live caller-owned value.",
           "hint": "Here the outer object outlives the callback. A private copy changes only the closure, not the caller.",
           "learn": "A reference capture accesses the original object, so mutations are visible to its owner. A mutable value capture can change its private copy instead. Borrowed state must outlive every invocation of the callback.",
           "question": "Does mutable change the caller's object, or only the closure's copy?"
         },
         {
-          "name": "algorithm_predicate",
-          "path": "exercises/15_algorithms/algorithm_predicate.cpp",
+          "name": "algorithms1",
+          "path": "exercises/15_algorithms/algorithms1.cpp",
           "objective": "Express a counting contract with a predicate, including zero.",
           "hint": "The boundary is part of the contract: nonnegative includes zero. Keep the algorithm and change its predicate.",
           "learn": "Algorithms separate traversal from the decision applied to each element. count_if counts elements for which a predicate is true. Boundary and empty inputs clarify the predicate's mathematical meaning without requiring a hand-written loop.",
           "question": "Does nonnegative include zero?"
         },
         {
-          "name": "optional_lookup",
-          "path": "exercises/07_containers/optional_lookup.cpp",
+          "name": "containers5",
+          "path": "exercises/07_containers/containers5.cpp",
           "objective": "Represent absence separately from a valid zero.",
           "hint": "An optional containing zero still contains a value. How do you represent no value at all?",
           "learn": "optional<T> separates presence from absence. A present value can be zero, false, or an empty string; none of these implies absence. Check has_value before accessing value when the result may be missing.",
@@ -289,48 +289,48 @@
       "name": "Intermediate",
       "exercises": [
         {
-          "name": "lifetime_return_value",
-          "path": "exercises/12_lifetimes/lifetime_return_value.cpp",
+          "name": "lifetimes1",
+          "path": "exercises/12_lifetimes/lifetimes1.cpp",
           "objective": "Return an owner when the local text must survive its scope.",
           "hint": "A view does not extend the lifetime of a local string. The return type must express ownership.",
           "learn": "An owning string keeps its characters alive. string_view only refers to characters stored elsewhere and does not extend their lifetime. Returning a view into a local string leaves the caller with a reference to destroyed storage.",
           "question": "Which object owns the characters after the function returns?"
         },
         {
-          "name": "lambda_move_capture",
-          "path": "exercises/11_lambdas/lambda_move_capture.cpp",
+          "name": "lambdas3",
+          "path": "exercises/11_lambdas/lambdas3.cpp",
           "objective": "Return a callback that owns a noncopyable resource.",
           "hint": "The owner cannot be copied. An initialized capture can transfer ownership into the closure.",
           "learn": "A returned lambda must carry any owned state it needs after its factory exits. An initialized capture can move a noncopyable resource into the closure. The closure then controls the resource lifetime and is itself move-only.",
           "question": "When should the captured resource be destroyed?"
         },
         {
-          "name": "span_borrow",
-          "path": "exercises/12_lifetimes/span_borrow.cpp",
+          "name": "lifetimes2",
+          "path": "exercises/12_lifetimes/lifetimes2.cpp",
           "objective": "Use a span to mutate original array or vector elements.",
           "hint": "A span borrows storage, but a range-loop binding may still copy each element. Which binding keeps the alias?",
           "learn": "span is a non-owning view over contiguous elements. It can refer to arrays or vectors without copying their storage. A range-loop variable declared by value still copies each element, even when the range itself borrows mutable storage.",
           "question": "Does the loop variable alias the element in the original container?"
         },
         {
-          "name": "raii_unwind",
-          "path": "exercises/06_raii/raii_unwind.cpp",
+          "name": "raii4",
+          "path": "exercises/06_raii/raii4.cpp",
           "objective": "Release owned resources while a typed exception unwinds the scope.",
           "hint": "Throwing bypasses manual cleanup, but destructors still run for local owners.",
           "learn": "Throwing an exception unwinds completed automatic objects in the scopes being exited. Their destructors run before a matching handler receives the exception. Owning resources with local RAII objects makes cleanup follow that same lifetime rule.",
           "question": "What survives the throw, and what must be released during unwinding?"
         },
         {
-          "name": "expected_parse",
-          "path": "exercises/13_errors/expected_parse.cpp",
+          "name": "errors1",
+          "path": "exercises/13_errors/errors1.cpp",
           "objective": "Return either an integer or a precise parse error.",
           "hint": "Zero is a successful integer, not an error. Preserve from_chars errors, and reject unconsumed input separately.",
           "learn": "expected<T, E> represents either a value or an error. Parsing zero is a successful value, while invalid text and overflow are distinct failures. from_chars also reports where parsing stopped, so consuming only part of the input needs an explicit decision.",
           "question": "Which results are values, and which must preserve an error code?"
         },
         {
-          "name": "threads_join_scope",
-          "path": "exercises/14_concurrency/threads_join_scope.cpp",
+          "name": "concurrency1",
+          "path": "exercises/14_concurrency/concurrency1.cpp",
           "objective": "Read a worker result only after joining its thread.",
           "hint": "The latch deliberately delays the worker. Joining creates the completion boundary; move the observation across it.",
           "learn": "A thread runs independently of its creator. join waits for completion and establishes synchronization with that completion. A result read before joining can observe unfinished work; the supplied latch makes that ordering visible without timing guesses.",
@@ -431,48 +431,48 @@
       "name": "Hard",
       "exercises": [
         {
-          "name": "move_const_trap",
-          "path": "exercises/08_ownership/move_const_trap.cpp",
+          "name": "ownership8",
+          "path": "exercises/08_ownership/ownership8.cpp",
           "objective": "Explain why const prevents transferring a unique owner.",
           "hint": "std::move changes the expression category; it does not remove const. Which promise conflicts with ownership transfer?",
           "learn": "std::move is a cast to an rvalue expression; it does not move anything by itself or remove const. A move constructor decides what transfer occurs. Moving a unique owner requires changing its source, which conflicts with a const source.",
           "question": "What promise does const make that ownership transfer cannot keep?"
         },
         {
-          "name": "vector_invalidation",
-          "path": "exercises/07_containers/vector_invalidation.cpp",
+          "name": "containers6",
+          "path": "exercises/07_containers/containers6.cpp",
           "objective": "Reacquire an element after vector storage is reallocated.",
           "hint": "reserve can invalidate every reference into the vector. Preserve the element identity without preserving its old address.",
           "learn": "When vector reallocates, its elements move to new storage. References, pointers, and iterators into the old storage become invalid. A logical element identity, such as an index, can survive growth and be used to reacquire a current reference.",
           "question": "Does the old address still identify a live element after reserve?"
         },
         {
-          "name": "weak_observer",
-          "path": "exercises/08_ownership/weak_observer.cpp",
+          "name": "ownership9",
+          "path": "exercises/08_ownership/ownership9.cpp",
           "objective": "Break a shared ownership cycle with a non-owning back-link.",
           "hint": "The forward link owns the next node. Does the back-link need to keep its predecessor alive too?",
           "learn": "shared_ptr keeps an object alive while any shared owner remains. Cycles can keep every object in the cycle alive forever. weak_ptr observes shared storage without becoming another owner; lock obtains a temporary owner only if the object still exists.",
           "question": "Which link owns the next object, and which link merely observes it?"
         },
         {
-          "name": "concept_constraint",
-          "path": "exercises/09_templates/concept_constraint.cpp",
+          "name": "templates8",
+          "path": "exercises/09_templates/templates8.cpp",
           "objective": "Constrain a generic operation to non-bool integral types.",
           "hint": "Check the interface, not just one instantiation. A requires-clause can reject types before the function body is instantiated.",
           "learn": "A concept constrains the interface of a template before its body is instantiated. A requires-expression can test whether a call is accepted. Successful examples alone do not prove a contract: also test types that should be rejected.",
           "question": "Does the function reject invalid types at the interface, or only fail later inside its body?"
         },
         {
-          "name": "atomic_increment",
-          "path": "exercises/14_concurrency/atomic_increment.cpp",
+          "name": "concurrency2",
+          "path": "exercises/14_concurrency/concurrency2.cpp",
           "objective": "Make an increment indivisible instead of splitting load and store.",
           "hint": "Atomic reads and writes alone do not make their combination atomic. The barrier makes both workers read the same old value.",
           "learn": "Individual atomic loads and stores avoid a data race on the atomic object, but a load followed by a store is still two operations. Another thread can intervene between them. A read-modify-write operation performs the update indivisibly.",
           "question": "Can both workers legally read the same old value?"
         },
         {
-          "name": "strong_exception_guarantee",
-          "path": "exercises/13_errors/strong_exception_guarantee.cpp",
+          "name": "errors2",
+          "path": "exercises/13_errors/errors2.cpp",
           "objective": "Keep the previous value unchanged when validation throws.",
           "hint": "Validation can fail. Delay mutation until all checks that may reject the candidate have succeeded.",
           "learn": "The strong exception guarantee promises that a failed operation leaves the previous observable state unchanged. Validate a candidate before changing live state. RAII prevents leaks, but that alone does not restore already-mutated data.",
@@ -549,32 +549,32 @@
       "name": "Difficult",
       "exercises": [
         {
-          "name": "callback_lifetime_chain",
-          "path": "exercises/11_lambdas/callback_lifetime_chain.cpp",
+          "name": "lambdas4",
+          "path": "exercises/11_lambdas/lambdas4.cpp",
           "objective": "Make every dependency of an escaping callback outlive its creator.",
           "hint": "One captured object owns its resource, but the other only views local text. Trace both lifetimes independently.",
           "learn": "An escaping callback has a separate lifetime from its factory. Every captured dependency must either be owned by the callback or remain alive elsewhere. Owning one resource does not make a separately captured view safe; trace each dependency independently.",
           "question": "Which captured dependency can dangle even though the unique resource is safe?"
         },
         {
-          "name": "transaction_rollback",
-          "path": "exercises/13_errors/transaction_rollback.cpp",
+          "name": "errors3",
+          "path": "exercises/13_errors/errors3.cpp",
           "objective": "Commit a multi-step update only after all failure points succeed.",
           "hint": "Updating entries and total directly exposes partial state. Prepare a candidate separately and publish it only when complete.",
           "learn": "A transaction-like update must publish all related state together. Prepare the changed state separately, then commit only after every potentially failing preparation step succeeds. Failure injection checks guarantees at intermediate points, not just at the start.",
           "question": "What state is visible if an exception happens after only one field changes?"
         },
         {
-          "name": "bounded_queue_shutdown",
-          "path": "exercises/14_concurrency/bounded_queue_shutdown.cpp",
+          "name": "concurrency3",
+          "path": "exercises/14_concurrency/concurrency3.cpp",
           "objective": "Make queue waits respond to closure and drain buffered values safely.",
           "hint": "A notification is not stored for future waiters. Both wait predicates must describe closure as well as data or capacity.",
           "learn": "Condition variables coordinate waiting for a state protected by a mutex. Notifications are not remembered for future waiters, and waits can wake spuriously, so predicates describe when progress is allowed. Closure changes both producer and consumer rules, while buffered values may still be drained.",
           "question": "What should wake a producer on a full queue, or a consumer on an empty queue, when the queue closes?"
         },
         {
-          "name": "jthread_cancellation",
-          "path": "exercises/14_concurrency/jthread_cancellation.cpp",
+          "name": "concurrency4",
+          "path": "exercises/14_concurrency/concurrency4.cpp",
           "objective": "Wake a waiting jthread when its stop token is requested.",
           "hint": "jthread requests stop, but the worker must observe it. condition_variable_any provides a wait overload that takes a stop token.",
           "learn": "jthread provides a stop source and joins on destruction, but its worker must cooperate with stop requests. A worker blocked in a wait must be able to observe cancellation there. A stop-aware wait connects the stop token to that blocking operation.",
@@ -589,8 +589,8 @@
           "question": "Audit narrowing, bounds, allocation, moves, and lifetime together. Which statement prevents that contract from holding?"
         },
         {
-          "name": "move_only_generic_pipeline",
-          "path": "exercises/09_templates/move_only_generic_pipeline.cpp",
+          "name": "templates9",
+          "path": "exercises/09_templates/templates9.cpp",
           "objective": "Compose a constrained callable, unique ownership, and an error result.",
           "hint": "The input belongs to the next stage after invocation. A named unique_ptr is still an lvalue; preserve the callable contract and transfer the input.",
           "learn": "A generic stage can consume an exclusive owner and return either a new owner or an error. Constraints describe the callable contract; invocation must honor its ownership boundary. On failure, local owners still release resources through RAII.",
