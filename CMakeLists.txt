@@ -9,6 +9,7 @@ project(cplings
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 option(CPLINGS_RUN_TESTS_AFTER_BUILD "Run exercise tests as post-build commands" ON)
 
 # Set default compile flags for GCC/Clang

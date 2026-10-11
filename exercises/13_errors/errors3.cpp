@@ -1,4 +1,4 @@
-// Difficulty: Difficult (5/5)
+// Difficulty: Intermediate (3/5)
 // Commit a multi-step update only after all failure points succeed.
 // Predict the failing result before editing. Fix the learner code, keep the tests.
 #include "learning_support.hpp"

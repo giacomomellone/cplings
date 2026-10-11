@@ -221,6 +221,41 @@ class RunnerTest(unittest.TestCase):
             with patch("cplings.read_key", return_value="r"):
                 self.assertEqual(cplings.wait(False, False, {}), "r")
 
+    def test_snapshot_survives_file_disappearing_during_save(self):
+        source = cplings.exercises()[0]
+        original_stat = Path.stat
+
+        def saving_stat(path, *args, **kwargs):
+            if path == source:
+                raise FileNotFoundError(2, "No such file or directory", str(path))
+            return original_stat(path, *args, **kwargs)
+
+        before = cplings.snapshot()
+        # Simulate a rename after discovery, before the metadata read.
+        with patch.object(Path, "is_file", return_value=True), patch.object(Path, "stat", saving_stat):
+            during = cplings.snapshot()
+        self.assertNotIn(source, during)
+        self.assertIn(cplings.ROOT / "CMakeLists.txt", during)
+        self.assertEqual(cplings.snapshot(), before)
+        with patch("cplings.keyboard", return_value=nullcontext()), patch("cplings.snapshot", return_value=before):
+            self.assertEqual(cplings.wait(False, False, during), "r")
+
+    def test_screen_survives_current_file_missing_during_save(self):
+        ordered = cplings.exercises()
+        source = ordered[0]
+        original_read = Path.read_text
+
+        def saving_read(path, *args, **kwargs):
+            if path == source:
+                raise FileNotFoundError(2, "No such file or directory", str(path))
+            return original_read(path, *args, **kwargs)
+
+        view = {"automatic": False, "stage": "compile", "status": "failed"}
+        with patch.object(Path, "read_text", saving_read):
+            output = cplings.screen(source, 0, ordered, set(), view)
+        self.assertIn(f"TEST  {source.stem}", output)
+        self.assertIn("Save the file to retry.", output)
+
     def test_main_retries_then_advances(self):
         ordered = cplings.exercises()[:2]
         with patch.object(sys, "argv", ["cplings.py", "--auto"]), patch("cplings.exercises", return_value=ordered), patch("cplings.subprocess.run", return_value=Mock(returncode=0)), patch("cplings.snapshot", return_value={}), patch("cplings.check", side_effect=[False, True, True]) as check, patch("cplings.wait", side_effect=["r", "n", "n"]) as wait, patch("cplings.print"):

@@ -423,6 +423,14 @@
           "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
           "learn": "Templates express operations across types. Deduction, specialization, and constraints determine the interface; compile-time branching selects an implementation that is valid for that type.",
           "question": "Use type and value template parameters together. Which statement prevents that contract from holding?"
+        },
+        {
+          "name": "errors3",
+          "path": "exercises/13_errors/errors3.cpp",
+          "objective": "Commit a multi-step update only after all failure points succeed.",
+          "hint": "Updating entries and total directly exposes partial state. Prepare a candidate separately and publish it only when complete.",
+          "learn": "A transaction-like update must publish all related state together. Prepare the changed state separately, then commit only after every potentially failing preparation step succeeds. Failure injection checks guarantees at intermediate points, not just at the start.",
+          "question": "What state is visible if an exception happens after only one field changes?"
         }
       ]
     },
@@ -555,14 +563,6 @@
           "hint": "One captured object owns its resource, but the other only views local text. Trace both lifetimes independently.",
           "learn": "An escaping callback has a separate lifetime from its factory. Every captured dependency must either be owned by the callback or remain alive elsewhere. Owning one resource does not make a separately captured view safe; trace each dependency independently.",
           "question": "Which captured dependency can dangle even though the unique resource is safe?"
-        },
-        {
-          "name": "errors3",
-          "path": "exercises/13_errors/errors3.cpp",
-          "objective": "Commit a multi-step update only after all failure points succeed.",
-          "hint": "Updating entries and total directly exposes partial state. Prepare a candidate separately and publish it only when complete.",
-          "learn": "A transaction-like update must publish all related state together. Prepare the changed state separately, then commit only after every potentially failing preparation step succeeds. Failure injection checks guarantees at intermediate points, not just at the start.",
-          "question": "What state is visible if an exception happens after only one field changes?"
         },
         {
           "name": "concurrency3",

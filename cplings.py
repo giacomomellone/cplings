@@ -70,7 +70,16 @@ def snapshot():
     for folder in ("exercises", "include", "tests"):
         paths.extend(path for path in (ROOT / folder).rglob("*") if path.is_file())
     # ponytail: poll this small repo; use a filesystem watcher if its size makes polling costly.
-    return {path: (path.stat().st_mtime_ns, path.stat().st_size) for path in paths}
+    state = {}
+    for path in paths:
+        try:
+            info = path.stat()
+        except FileNotFoundError:
+            # Editors can rename the original before writing its replacement.
+            # The next poll will detect the file returning.
+            continue
+        state[path] = (info.st_mtime_ns, info.st_size)
+    return state
 
 
 def check(source, build, report=None):
@@ -177,7 +186,12 @@ def colourize(text):
 def screen(source, index, ordered, completed, view, width=80, height=40):
     width = max(30, min(width, 100))
     ruler = "-" * width
-    test_names = re.findall(r'TEST_CASE\s*\(\s*"([^"]+)"', source.read_text())
+    try:
+        contents = source.read_text()
+    except FileNotFoundError:
+        # Keep the runner visible while an editor replaces the source file.
+        contents = ""
+    test_names = re.findall(r'TEST_CASE\s*\(\s*"([^"]+)"', contents)
     test = test_names[0] if test_names else source.stem
     if len(test_names) > 1:
         test += f" (+{len(test_names) - 1} more)"
@@ -365,7 +379,7 @@ def main():
         output = screen(source, index, ordered, completed, view, size.columns, size.lines)
         if output != last_screen:
             if sys.stdout.isatty() and os.environ.get("TERM") != "dumb":
-                print("\x1b[2J\x1b[H", end="")
+                print("\x1b[H\x1b[2J\x1b[3J", end="")
             use_colour = args.color == "always" or (args.color == "auto" and sys.stdout.isatty() and os.environ.get("TERM") != "dumb" and "NO_COLOR" not in os.environ)
             print(colourize(output) if use_colour else output, flush=True)
             last_screen = output
