@@ -13,7 +13,7 @@
 // even after you already figured it out.
 
 // Try to find the constant values matching the expected results.
-// This exercises showcases integer overflows. This occurs when the
+// This exercise showcases integer overflows. This occurs when the
 // selected datatype is not large enough to hold the value.
 // See https://www.learncpp.com/cpp-tutorial/fixed-width-integers-and-size-t/
 // See: https://www.learncpp.com/cpp-tutorial/unsigned-integers-and-why-to-avoid-them/
@@ -23,9 +23,9 @@ using namespace boost::safe_numerics;
 std::vector<std::string> words;
 
 //Hint: Use safe<> type from the safe_numerics (see more details in hint file)
-uint32_t len; // This global variable keeps track of how may words should be accessed
+uint32_t len; // This global variable keeps track of how many words should be accessed
 
-// init_words is called one before test_danger_loop
+// init_words is called once before test_danger_loop
 void init_words() {
     words = {"Hello", "World", "!"};
     len = words.size(); // Only those 3 words should be accessed

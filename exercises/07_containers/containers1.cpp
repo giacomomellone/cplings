@@ -5,7 +5,7 @@
 // containers1.cpp
 // Make me compile! Go to the folder hint if you want a hint :)
 
-// We sometimes encourage you to keep trying things on shape given exercise,
+// We sometimes encourage you to keep trying things on a given exercise,
 // even after you already figured it out.
 
 // Step 1: Make me compile. Replace the array with the appropriate container.

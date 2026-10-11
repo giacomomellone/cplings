@@ -7,7 +7,7 @@
 // We sometimes encourage you to keep trying things on a given exercise,
 // even after you already figured it out.
 
-const int y = ; // y is a global variable. Fix it's definition.
+const int y = ; // y is a global variable. Fix its definition.
 int global_var_10_function() {
     return y;
 }

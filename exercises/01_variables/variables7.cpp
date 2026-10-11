@@ -10,7 +10,7 @@
 // even after you already figured it out.
 
 // Try to find the constant values matching the expected results.
-// This exercises showcases integer overflows. This occurs when the
+// This exercise showcases integer overflows. This occurs when the
 // selected datatype is not large enough to hold the value.
 // See https://www.learncpp.com/cpp-tutorial/fixed-width-integers-and-size-t/
 // See: https://www.learncpp.com/cpp-tutorial/unsigned-integers-and-why-to-avoid-them/

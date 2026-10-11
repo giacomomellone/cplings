@@ -3,10 +3,10 @@
 #include <string>
 #include <unordered_set>
 
-// raii1.cpp
+// raii2.cpp
 // Make me compile! Go to the folder hint if you want a hint :)
 
-// We sometimes encourage you to keep trying things on shape given exercise,
+// We sometimes encourage you to keep trying things on a given exercise,
 // even after you already figured it out.
 
 // Step 1: Make me compile and pass the test! Here a set is used to avoid creating more resources when the same name is used
@@ -23,11 +23,11 @@ class ExpensiveResource {
     };
     ExpensiveResource(std::string n = "") : name(n) {
         resources....; // Fix: perform an operation on resources
-        std::cout << "Opening Ressource " << n << ", new count is:" << resources.size() << "\n";
+        std::cout << "Opening Resource " << n << ", new count is:" << resources.size() << "\n";
     }
     ~ExpensiveResource() {
         resources....; // Fix: perform an operation on resources
-        std::cout << "Closing Ressource " << name << ", new count is:" << resources.size() << "\n";
+        std::cout << "Closing Resource " << name << ", new count is:" << resources.size() << "\n";
     }
 };
 std::unordered_set<std::string> ExpensiveResource::resources;
@@ -55,8 +55,8 @@ void test_raii1() {
 
 TEST_CASE("test_raii1") {
     test_raii1();
-    std::cout << "To avoid leaks the final number of ressources should be 0 \n";
-    std::cout << "The actual number of ressources " << ExpensiveResource::getResourceCount()
+    std::cout << "To avoid leaks the final number of resources should be 0 \n";
+    std::cout << "The actual number of resources " << ExpensiveResource::getResourceCount()
               << "\n";
     REQUIRE(ExpensiveResource::getResourceCount() == 0);
 }

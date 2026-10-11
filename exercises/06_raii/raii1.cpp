@@ -1,11 +1,11 @@
-// Difficulty: Intermediate (3/5)
+// Difficulty: Moderate (2/5)
 #include <iostream>
 #include <string>
 
 // raii1.cpp
 // Make me compile! Go to the folder hint if you want a hint :)
 
-// We sometimes encourage you to keep trying things on shape given exercise,
+// We sometimes encourage you to keep trying things on a given exercise,
 // even after you already figured it out.
 
 // Step 1: Make me compile and pass the test!
@@ -22,11 +22,11 @@ class ExpensiveResource {
     };
     ExpensiveResource(std::string n = "") : name(n) {
         resources_count += 1;
-        std::cout << "Opening Ressource " << name << ", new count is:" << resources_count << "\n";
+        std::cout << "Opening Resource " << name << ", new count is:" << resources_count << "\n";
     }
     ~ExpensiveResource() {
         resources_count -= 1;
-        std::cout << "Closing Ressource " << name << ", new count is:" << resources_count << "\n";
+        std::cout << "Closing Resource " << name << ", new count is:" << resources_count << "\n";
     }
 };
 int ExpensiveResource::resources_count = 0;
@@ -53,8 +53,8 @@ void test_raii1() {
 
 TEST_CASE("test_raii1") {
     test_raii1();
-    std::cout << "To avoid leaks the final number of ressources should be 0 \n";
-    std::cout << "The actual number of ressources " << ExpensiveResource::getResourceCount()
+    std::cout << "To avoid leaks the final number of resources should be 0 \n";
+    std::cout << "The actual number of resources " << ExpensiveResource::getResourceCount()
               << "\n";
     REQUIRE(ExpensiveResource::getResourceCount() == 0);
 }

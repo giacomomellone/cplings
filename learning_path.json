@@ -163,6 +163,14 @@
       "name": "Moderate",
       "exercises": [
         {
+          "name": "raii1",
+          "path": "exercises/06_raii/raii1.cpp",
+          "objective": "Connect an acquired resource to construction and destruction.",
+          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
+          "learn": "RAII binds resources to owner lifetimes. Copies of owning raw pointers can accidentally create two deleting owners. Trace construction, copying, and destruction rather than relying only on the final return value.",
+          "question": "Connect an acquired resource to construction and destruction. Which statement prevents that contract from holding?"
+        },
+        {
           "name": "raii3",
           "path": "exercises/06_raii/raii3.cpp",
           "objective": "Release a resource on every exit from its scope.",
@@ -351,14 +359,6 @@
           "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
           "learn": "Construction establishes object state, including base-class state. Member hiding and virtual dispatch are different mechanisms: inspect whether a call uses an object, reference, or pointer and whether the interface is virtual.",
           "question": "Use base pointers to observe virtual dispatch. Which statement prevents that contract from holding?"
-        },
-        {
-          "name": "raii1",
-          "path": "exercises/06_raii/raii1.cpp",
-          "objective": "Connect an acquired resource to construction and destruction.",
-          "hint": "Trace the objects and operations named in the objective. Compare the exercise comments with each assertion, including boundary cases.",
-          "learn": "RAII binds resources to owner lifetimes. Copies of owning raw pointers can accidentally create two deleting owners. Trace construction, copying, and destruction rather than relying only on the final return value.",
-          "question": "Connect an acquired resource to construction and destruction. Which statement prevents that contract from holding?"
         },
         {
           "name": "ownership2",

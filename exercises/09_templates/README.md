@@ -1,5 +1,5 @@
 # Template
-Here, you'll learn how to write templates and debugging templates.
+Here, you'll learn how to write and debug templates.
 
 ## Reference
 
@@ -11,7 +11,7 @@ https://github.com/CppCon/CppCon2020/blob/main/Presentations/back_to_basics_temp
 ## Some debugging template ideas
 
 It is often difficult to know which type is breaking a template.
-These give a way of finding out more with type version of the template causes problems.
+These techniques help identify which version of the template causes problems.
 
 To debug templates, use the keyword __func__ (C++11), or __PRETTY_FUNCTION__ under G++ or VS  __FUNCSIG__
 Annotate functions or classes with [[deprecated]] with methods (functions) made constexpr

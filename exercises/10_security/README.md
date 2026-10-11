@@ -1,6 +1,6 @@
 
 # Security
-Here, you'll learn some examples ofsecurity related bugs.
+Here, you'll learn some examples of security-related bugs.
 
 ## TODO
 

@@ -7,12 +7,12 @@
 // We sometimes encourage you to keep trying things on a given exercise,
 // even after you already figured it out.
 
-// constexpr are evaluated at compile time. Fix it the syntax
+// constexpr functions can be evaluated at compile time. Fix the syntax
 constexpr void is_even(int num) {
     return num % 2 == 0;
 }
 
-// This is a lambda function. It's definition is broken, fix it
+// This is a lambda function. Its definition is broken, fix it
 auto sale_price = []() -> int {
     if (is_even(price))
         return price - 10;
